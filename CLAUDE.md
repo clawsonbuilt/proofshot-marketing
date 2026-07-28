@@ -297,6 +297,42 @@ public/
 - [ ] Real app screenshots (placeholders in place)
 - [ ] Real testimonials (when available)
 
+### Phase 7: Account Migration (2026-07-28)
+
+Moved this site onto company-owned accounts. Both hosting and source control
+changed owner; nothing about the application code or the live site changed.
+
+| | Before | After |
+|---|---|---|
+| Vercel team | Trick Design Co | **J Calvin** (Pro) |
+| GitHub repo | `treyclawson22/proofshot-marketing` | **`clawsonbuilt/proofshot-marketing`** |
+| Commit identity | treyclawson22@gmail.com | **trey@clawsonbuilt.com** (repo-local) |
+
+- [x] Vercel project transferred to the J Calvin team — project ID unchanged
+      (`prj_OA9n1jgGTgFYAfAiupnh9LxgOK7A`); domains, aliases, and all env vars
+      carried over
+- [x] GitHub repo transferred to `clawsonbuilt`; old URLs auto-redirect
+- [x] Local `.vercel/project.json` relinked to the new `orgId`; `origin` remote
+      re-pointed
+- [x] Vercel↔GitHub connection rebuilt and **push-to-deploy verified with real
+      pushes** (not just config inspection — see the gotcha below)
+- [x] Scoped `VERCEL_TOKEN` and `GH_TOKEN` wired into `.claude/settings.local.json`
+- [x] `.gitignore` hardened with a repo-level rule for `.claude/settings.local.json`,
+      which holds both tokens (this repo is public)
+
+**Gotcha worth remembering.** After the repo transfer, the Vercel project's
+`org` and `repoOwnerId` were corrected but its `gitCredentialId` still pointed at
+a credential bound to the previous owner's GitHub App installation. Every field
+in the dashboard looked right and **pushes silently produced no deployment** —
+GitHub accepted the push, and nothing built.
+
+The fix is to **disconnect the Git integration and then reconnect it**. A plain
+reconnect reuses the stale credential; only a disconnect forces reissuance.
+
+Because that failure is silent, verify with an actual push and confirm a
+deployment appears — never conclude the pipeline is healthy from link metadata
+alone.
+
 ---
 
 ## Quick Commands
@@ -317,8 +353,9 @@ vercel --prod
 ## Vercel Auth — NEVER run `vercel login`
 
 This project authenticates to Vercel with a **scoped token**, not the global CLI session.
-Other Claude sessions work against a different Vercel account on this machine, and
-`vercel login` mutates global CLI state — running it would break those sessions.
+`vercel login` and `vercel logout` mutate global CLI state that this project does not
+own, so they are never the right fix here — if a command fails, the token is the thing
+to check.
 
 **How it works:**
 - The token lives in `.claude/settings.local.json` under `env.VERCEL_TOKEN` (gitignored)
@@ -388,7 +425,7 @@ If the token is missing or expired, ask for a new one. **Never fall back to
 ### Rules
 
 - ❌ Never run `gh auth logout`, `gh auth switch`, or `gh auth login` — all three mutate
-  global CLI state shared with this machine's other projects
+  global CLI state that this project does not own
 - ❌ Never write the token into a tracked file, commit message, or CLI argument
 - ❌ Never change the repo-local `user.email` away from `trey@clawsonbuilt.com`
 - ✓ `GH_TOKEN` is already in the environment — just run `gh`
