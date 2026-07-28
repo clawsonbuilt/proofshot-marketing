@@ -314,6 +314,66 @@ vercel --prod
 
 ---
 
+## Vercel Auth — NEVER run `vercel login`
+
+This project authenticates to Vercel with a **scoped token**, not the global CLI session.
+Other Claude sessions work against a different Vercel account on this machine, and
+`vercel login` mutates global CLI state — running it would break those sessions.
+
+**How it works:**
+- The token lives in `.claude/settings.local.json` under `env.VERCEL_TOKEN` (gitignored)
+- Claude Code injects it into every command automatically — just run `vercel ...` normally
+- The Vercel CLI reads `VERCEL_TOKEN` from the environment with no extra flags
+
+**Always pass `--scope j-calvin`.** The token belongs to `trey-7988`
+(trey@jcalvintx.com), which has no personal Vercel team — only the `j-calvin`
+Pro team. Without an explicit scope the CLI cannot resolve a default and fails
+with a misleading `Error: Not authorized`, even though the token is valid.
+
+```bash
+vercel whoami --scope j-calvin     # -> trey-7988
+vercel project ls --scope j-calvin
+```
+
+**Rules:**
+- ❌ Never run `vercel login` or `vercel logout`
+- ❌ Never pass `--token` on the command line — Vercel's docs warn it is "visible in process
+  lists and logs". The env var exists precisely to avoid that.
+- ❌ Never commit the token, echo it, or paste it into a file that isn't gitignored
+- ✓ If a command returns `Not authorized`, the token is missing or expired — ask for a new
+  one, don't fall back to `vercel login`
+
+---
+
+## GitHub Auth — NEVER run `gh auth logout` or `gh auth switch`
+
+This repo lives at **`clawsonbuilt/proofshot-marketing`** (transferred from
+`treyclawson22` on 2026-07-28). The machine's stored `gh` keyring login belongs to
+`treyclawson22` and is used by other projects — switching or logging out would break them.
+
+**How it works:**
+- A fine-grained PAT for `clawsonbuilt` lives in `.claude/settings.local.json` under
+  `env.GH_TOKEN` (gitignored)
+- Per `gh help environment`, `GH_TOKEN` *"takes precedence over previously stored
+  credentials"* — it overrides the keyring **without modifying it**
+- Both identities coexist: `gh api user` returns `clawsonbuilt`; unset `GH_TOKEN` and the
+  same command returns `treyclawson22`
+
+**Two accounts, two capability levels:**
+
+| | `treyclawson22` (keyring) | `clawsonbuilt` (GH_TOKEN) |
+|---|---|---|
+| git fetch / pull / push | ✓ (retained as collaborator) | ✓ |
+| repo admin — settings, secrets, visibility, delete, transfer | ✗ | ✓ |
+
+**Rules:**
+- ❌ Never run `gh auth logout`, `gh auth switch`, or `gh auth login`
+- ❌ Never commit the token or echo it into a non-gitignored file
+- ✓ `git push` works as-is; `treyclawson22` kept push rights as a collaborator
+- ✓ For anything needing admin, `GH_TOKEN` is already in the environment — just run `gh`
+
+---
+
 ## Analytics
 
 **Stack:** PostHog (behavior + conversions) + Vercel Analytics (Web Vitals) + Google Search Console (SEO)

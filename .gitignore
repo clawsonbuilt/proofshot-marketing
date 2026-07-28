@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# claude — local settings hold the scoped VERCEL_TOKEN, never commit
+.claude/settings.local.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
