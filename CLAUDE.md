@@ -345,32 +345,54 @@ vercel project ls --scope j-calvin
 
 ---
 
-## GitHub Auth — NEVER run `gh auth logout` or `gh auth switch`
+## GitHub Auth — use ONLY the `clawsonbuilt` account for this project
 
-This repo lives at **`clawsonbuilt/proofshot-marketing`** (transferred from
-`treyclawson22` on 2026-07-28). The machine's stored `gh` keyring login belongs to
-`treyclawson22` and is used by other projects — switching or logging out would break them.
+### The account
 
-**How it works:**
-- A fine-grained PAT for `clawsonbuilt` lives in `.claude/settings.local.json` under
-  `env.GH_TOKEN` (gitignored)
-- Per `gh help environment`, `GH_TOKEN` *"takes precedence over previously stored
-  credentials"* — it overrides the keyring **without modifying it**
-- Both identities coexist: `gh api user` returns `clawsonbuilt`; unset `GH_TOKEN` and the
-  same command returns `treyclawson22`
+| | |
+|---|---|
+| **GitHub account** | `clawsonbuilt` (user id `310189102`) |
+| **Account email** | `trey@clawsonbuilt.com` |
+| **Repo** | `clawsonbuilt/proofshot-marketing` (transferred from `treyclawson22` 2026-07-28) |
+| **Commit identity** | set repo-locally to `trey@clawsonbuilt.com` — do not change it |
 
-**Two accounts, two capability levels:**
+**THE RULE: this project uses the `clawsonbuilt` GitHub account exclusively.**
+Never act as `treyclawson22` here — not for commits, pushes, issues, PRs, releases, or
+any `gh` command. That account still appears as a repo *collaborator* and its credentials
+are in the machine keyring, so acting as it will silently succeed and attribute your work
+to the wrong identity. Always confirm with `gh api user --jq .login` → must be
+`clawsonbuilt`.
+
+### How auth works (no token value is stored in this file — by design)
+
+The fine-grained PAT lives in **`.claude/settings.local.json`** under `env.GH_TOKEN`.
+That file is gitignored (`.gitignore`); this repo is **public**, so the token value must
+never appear in CLAUDE.md, any tracked file, a commit message, or a command line.
+
+Claude Code injects that `env` block into every session in this directory, so `GH_TOKEN`
+is already set — just run `gh` normally. Per `gh help environment`, `GH_TOKEN`
+*"takes precedence over previously stored credentials"*, meaning it overrides the keyring
+**without modifying it**. Both identities coexist: with it, `gh api user` →
+`clawsonbuilt`; without it → `treyclawson22`.
+
+If the token is missing or expired, ask for a new one. **Never fall back to
+`gh auth login`.**
+
+### Capability split
 
 | | `treyclawson22` (keyring) | `clawsonbuilt` (GH_TOKEN) |
 |---|---|---|
 | git fetch / pull / push | ✓ (retained as collaborator) | ✓ |
 | repo admin — settings, secrets, visibility, delete, transfer | ✗ | ✓ |
 
-**Rules:**
-- ❌ Never run `gh auth logout`, `gh auth switch`, or `gh auth login`
-- ❌ Never commit the token or echo it into a non-gitignored file
-- ✓ `git push` works as-is; `treyclawson22` kept push rights as a collaborator
-- ✓ For anything needing admin, `GH_TOKEN` is already in the environment — just run `gh`
+### Rules
+
+- ❌ Never run `gh auth logout`, `gh auth switch`, or `gh auth login` — all three mutate
+  global CLI state shared with this machine's other projects
+- ❌ Never write the token into a tracked file, commit message, or CLI argument
+- ❌ Never change the repo-local `user.email` away from `trey@clawsonbuilt.com`
+- ✓ `GH_TOKEN` is already in the environment — just run `gh`
+- ✓ Verify identity with `gh api user --jq .login` before any write operation
 
 ---
 
