@@ -321,7 +321,9 @@ export const industries: Record<string, Industry> = {
           "Show potential customers your work history during estimates.",
       },
     ],
-    gallery: [],
+    gallery: [
+      { before: "/industries/painting/before-1.jpg", after: "/industries/painting/after-1.jpg", alt: "Interior accent wall panelled and painted", label: "Accent Wall" },
+    ],
     relatedIndustries: ["pressure-washing", "home-remodeling", "cleaning", "landscaping"],
     metaDescription:
       "Document paint jobs professionally. Before/after photos from prep to perfection. Free to start.",
@@ -472,7 +474,9 @@ export const industries: Record<string, Industry> = {
           "Photograph pump, filter, and equipment condition for maintenance records.",
       },
     ],
-    gallery: [],
+    gallery: [
+      { before: "/industries/pool-service/before-1.jpg", after: "/industries/pool-service/after-1.jpg", alt: "Green pool restored to clear water", label: "Pool Water" },
+    ],
     relatedIndustries: ["landscaping", "pressure-washing", "cleaning", "pest-control"],
     metaDescription:
       "Document pool cleaning with stunning before/after photos. Crystal clear results, crystal clear proof. Free to start.",
