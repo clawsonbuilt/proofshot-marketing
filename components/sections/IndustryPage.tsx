@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui";
-import { BeforeAfterGallery } from "./BeforeAfterGallery";
+import { BeforeAfterCard } from "./BeforeAfterCard";
 import { Industry, getRelatedIndustries } from "@/lib/industries";
 import {
   AlertTriangle,
@@ -21,29 +21,58 @@ interface IndustryPageProps {
 
 export function IndustryPageTemplate({ industry }: IndustryPageProps) {
   const relatedIndustries = getRelatedIndustries(industry.slug);
+  // Painting, pool service, and owner-operator have no complete pair yet.
+  const heroPair = industry.gallery?.[0];
 
   return (
     <>
       <Navigation />
       <main id="main">
-        {/* Hero Section */}
-        <section className="pt-32 lg:pt-40 pb-16 lg:pb-24 bg-gradient-to-b from-orange-light/50 to-white">
-          <div className="max-w-[1000px] mx-auto px-6 lg:px-8 text-center">
-            <p className="text-orange font-display font-bold uppercase tracking-wide mb-4">
-              For {industry.name} Professionals
-            </p>
-            <h1 className="font-display font-black text-4xl md:text-5xl lg:text-6xl text-black uppercase tracking-tight mb-6">
-              {industry.headline}
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8">
-              {industry.tagline}
-            </p>
-            <Button href="https://app.proofshotpro.com/signup" showArrow>
-              Claim My Free Account
-            </Button>
-            <p className="text-sm text-gray-500 mt-4">
-              No credit card required
-            </p>
+        {/* Hero Section — two columns when there's real photography, centred without */}
+        <section className="pt-32 lg:pt-36 pb-16 lg:pb-20 bg-gradient-to-b from-orange-light/50 to-white">
+          <div
+            className={`mx-auto px-6 lg:px-8 ${
+              heroPair ? "max-w-[1200px]" : "max-w-[1000px]"
+            }`}
+          >
+            <div
+              className={
+                heroPair
+                  ? "grid lg:grid-cols-2 gap-10 lg:gap-16 items-center"
+                  : ""
+              }
+            >
+              <div className={heroPair ? "text-center lg:text-left" : "text-center"}>
+                <p className="text-orange font-display font-bold uppercase tracking-wide mb-4">
+                  For {industry.name} Professionals
+                </p>
+                <h1 className="font-display font-black text-4xl md:text-5xl lg:text-6xl text-black uppercase tracking-tight mb-6">
+                  {industry.headline}
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-600 mb-8">
+                  {industry.tagline}
+                </p>
+                <Button href="https://app.proofshotpro.com/signup" showArrow>
+                  Claim My Free Account
+                </Button>
+                <p className="text-sm text-gray-500 mt-4">
+                  No credit card required
+                </p>
+              </div>
+
+              {heroPair && (
+                <div className="max-w-[520px] w-full mx-auto lg:mx-0 lg:ml-auto">
+                  <BeforeAfterCard
+                    pair={heroPair}
+                    industryName={industry.name}
+                    priority
+                  />
+                  <p className="mt-3 text-center text-sm text-gray-500">
+                    The kind of transformation worth documenting.
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </section>
 
@@ -209,15 +238,6 @@ export function IndustryPageTemplate({ industry }: IndustryPageProps) {
             </div>
           </div>
         </section>
-
-        {/* Before & After Gallery — renders nothing for industries without assets */}
-        {industry.gallery && industry.gallery.length > 0 && (
-          <BeforeAfterGallery
-            title={`${industry.name} Before & Afters`}
-            pairs={industry.gallery}
-            industryName={industry.name}
-          />
-        )}
 
         {/* CTA Section */}
         <section className="py-16 lg:py-20 bg-gradient-to-b from-white via-orange-light/30 to-orange-light/50">

@@ -10,4 +10,4 @@ export { PricingPreview } from "./PricingPreview";
 export { FAQ } from "./FAQ";
 export { FinalCTA } from "./FinalCTA";
 export { IndustryPageTemplate } from "./IndustryPage";
-export { BeforeAfterGallery } from "./BeforeAfterGallery";
+export { BeforeAfterCard } from "./BeforeAfterCard";
