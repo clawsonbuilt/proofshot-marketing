@@ -106,18 +106,29 @@ export function IndustryPageTemplate({ industry }: IndustryPageProps) {
                   : "pt-32 pb-20 text-center lg:pt-40 lg:pb-24"
               }
             >
-              <div className={heroPair ? "pb-14 lg:pb-0 lg:pr-10" : ""}>
+              {/* Centred on mobile, ranged left once the field appears beside it. */}
+              <div
+                className={
+                  heroPair
+                    ? "pb-14 text-center lg:pb-0 lg:pr-10 lg:text-left"
+                    : "text-center"
+                }
+              >
                 <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.18em] text-orange-dark">
                   For {industry.name} professionals
                 </p>
                 <h1 className="font-display font-black uppercase tracking-[-0.04em] text-black text-[2.75rem] leading-[0.9] md:text-5xl lg:text-[3.75rem]">
                   {industry.headline}
                 </h1>
-                <p className="mt-6 max-w-md text-lg text-gray-600 lg:text-xl">
+                <p className="mx-auto mt-6 max-w-md text-lg text-gray-600 lg:mx-0 lg:text-xl">
                   {industry.tagline}
                 </p>
                 <div className="mt-9">
-                  <Button href="https://app.proofshotpro.com/signup" showArrow>
+                  <Button
+                    href="https://app.proofshotpro.com/signup"
+                    className="w-full sm:w-auto"
+                    showArrow
+                  >
                     Claim My Free Account
                   </Button>
                 </div>

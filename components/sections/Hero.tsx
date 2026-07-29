@@ -64,8 +64,8 @@ export function Hero() {
 
       <div className="relative mx-auto max-w-[1200px] px-6 lg:px-8">
         <div className="grid items-center gap-y-0 pt-28 lg:min-h-screen lg:grid-cols-2 lg:gap-x-10 lg:pt-24 lg:pb-24">
-          {/* The claim */}
-          <div className="pb-14 lg:pb-0 lg:pr-10">
+          {/* The claim. Centred on mobile, ranged left once the field appears beside it. */}
+          <div className="pb-14 text-center lg:pb-0 lg:pr-10 lg:text-left">
             <h1 className="font-display font-black uppercase text-black text-[3.25rem] leading-[0.86] tracking-[-0.045em] sm:text-7xl lg:text-[5.5rem]">
               Share
               <br />
@@ -74,13 +74,19 @@ export function Hero() {
               <span className="text-orange">Proof.</span>
             </h1>
 
-            <p className="mt-7 max-w-md text-lg leading-relaxed text-gray-600 lg:text-xl">
+            <p className="mx-auto mt-7 max-w-md text-lg leading-relaxed text-gray-600 lg:mx-0 lg:text-xl">
               Before and after documentation for contractors. Two photos in, one
               branded proof out, in about thirty seconds.
             </p>
 
-            <div className="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-7">
-              <Button href="https://app.proofshotpro.com/signup" showArrow>
+            <div className="mt-9 flex flex-col items-center gap-5 sm:flex-row sm:justify-center sm:gap-7 lg:justify-start">
+              {/* Full width on phones — a pill sized to its label reads as a stray
+                  fragment on a narrow screen rather than as the primary action. */}
+              <Button
+                href="https://app.proofshotpro.com/signup"
+                className="w-full sm:w-auto"
+                showArrow
+              >
                 Claim My Free Account
               </Button>
               <Link
@@ -92,11 +98,16 @@ export function Hero() {
             </div>
 
             {/* Spec strip. Monospace because this product's subject is documentation. */}
-            <ul className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[11px] uppercase tracking-[0.16em] text-gray-500">
+            <ul className="mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-[11px] uppercase tracking-[0.16em] text-gray-500 lg:justify-start">
               {["AI captions", "Free to start", "30-second workflow"].map((spec, i) => (
                 <li key={spec} className="flex items-center gap-5">
+                  {/* Hidden until the row fits on one line — when it wraps, a leading
+                      rule strands itself at the start of the next line. */}
                   {i > 0 && (
-                    <span className="h-3 w-px bg-gray-300" aria-hidden="true" />
+                    <span
+                      className="hidden h-3 w-px bg-gray-300 lg:block"
+                      aria-hidden="true"
+                    />
                   )}
                   <span className="flex items-center gap-2">
                     <span
