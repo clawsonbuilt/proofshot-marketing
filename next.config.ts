@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000, // 1 year — screenshots are static
+    // Next 16 rejects any quality not listed here. 55 is for the hero field, which
+    // sits behind a 66% black overlay where the lost detail is invisible.
+    qualities: [55, 75],
   },
   async redirects() {
     return [

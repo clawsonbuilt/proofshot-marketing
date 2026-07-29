@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { AppBadges } from "../AppBadges";
 import { ProofTemplate } from "../ProofTemplate";
@@ -18,12 +19,28 @@ import { Button } from "../ui";
  * copy instead — as an overlay it swallowed the spec strip and the app badges.
  */
 
-const FIELD_STYLE = {
-  backgroundImage: "url('/proof/camera-roll-field.jpg')",
-  // Small enough that the tile repeat stops reading as a pattern and starts reading
-  // as sheer quantity, which is the point.
-  backgroundSize: "228px auto",
-} as const;
+/**
+ * The field: a real, unedited camera roll of pressure washing jobs.
+ *
+ * Previously a small crop tiled to fill, which repeated visibly. This is the whole
+ * screenshot, so nothing repeats — and rendered through next/image rather than as a
+ * CSS background, it ships as optimised AVIF instead of the 1MB source.
+ */
+function Field({ className = "" }: { className?: string }) {
+  return (
+    <div aria-hidden="true" className={className}>
+      <Image
+        src="/proof/camera-roll-field.jpg"
+        alt=""
+        fill
+        sizes="(max-width: 1024px) 100vw, 50vw"
+        quality={55}
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-black/66" />
+    </div>
+  );
+}
 
 function FieldMeta({ className = "" }: { className?: string }) {
   return (
@@ -41,13 +58,7 @@ export function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-white">
       {/* Desktop field. Starts below the nav so its transparent dark links stay legible. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-20 bottom-0 hidden w-1/2 lg:block"
-      >
-        <div className="absolute inset-0 bg-repeat" style={FIELD_STYLE} />
-        <div className="absolute inset-0 bg-black/66" />
-      </div>
+      <Field className="pointer-events-none absolute right-0 top-20 bottom-0 hidden w-1/2 lg:block" />
 
       <FieldMeta className="pointer-events-none absolute bottom-12 right-10 z-10 hidden text-right lg:block" />
 
@@ -104,10 +115,7 @@ export function Hero() {
           {/* The one that made it out */}
           <div className="relative -mx-6 px-6 py-14 lg:mx-0 lg:px-0 lg:py-0">
             {/* Mobile field: a band the card sits on, rather than an overlay. */}
-            <div aria-hidden="true" className="absolute inset-0 lg:hidden">
-              <div className="absolute inset-0 bg-repeat" style={FIELD_STYLE} />
-              <div className="absolute inset-0 bg-black/66" />
-            </div>
+            <Field className="absolute inset-0 lg:hidden" />
 
             <figure className="relative mx-auto w-full max-w-[360px] lg:mx-0 lg:ml-auto lg:mr-0">
               <div className="relative rotate-[1.25deg] transition-transform duration-500 ease-out hover:rotate-0 motion-reduce:transition-none motion-reduce:hover:rotate-[1.25deg]">
