@@ -63,6 +63,10 @@
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: var(--font-inter-tight, 'Inter Tight'), -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Third type role. This is a documentation product — timestamps, file names, and
+     job metadata are its native typography, and monospace is how they read. Uses the
+     system stack, so it costs no extra font download. */
+  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 /* ==================== BASE STYLES ==================== */

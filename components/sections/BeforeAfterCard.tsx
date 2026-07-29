@@ -9,56 +9,62 @@ interface BeforeAfterCardProps {
 }
 
 /**
- * A single before/after comparison card.
+ * One before/after comparison, treated as a physical print.
  *
- * Lives on its own because the industry hero is the only place it appears — one real
- * pair per industry means a multi-card gallery would just repeat the same photos
- * further down the same page.
+ * Square corners, a white matte, and a hard unblurred offset shadow — the same
+ * language as the homepage hero. The two photos butt together with no gutter, which
+ * is the seam the app itself puts between a before and an after.
  */
 export function BeforeAfterCard({
   pair,
   industryName,
   priority = false,
 }: BeforeAfterCardProps) {
-  const sizes = "(max-width: 640px) 45vw, (max-width: 1024px) 40vw, 260px";
+  const sizes = "(max-width: 640px) 45vw, (max-width: 1024px) 40vw, 240px";
   const trade = industryName.toLowerCase();
 
   return (
-    <figure className="bg-white rounded-2xl shadow-lg ring-1 ring-black/10 overflow-hidden">
-      <figcaption className="px-4 py-3 border-b border-gray-100">
-        <span className="font-display font-bold text-sm uppercase tracking-wide text-black">
-          {pair.label}
-        </span>
-      </figcaption>
+    <figure className="relative rotate-[-1.25deg] transition-transform duration-500 ease-out hover:rotate-0 motion-reduce:transition-none motion-reduce:hover:rotate-[-1.25deg]">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 translate-x-3 translate-y-3 bg-orange"
+      />
 
-      <div className="grid grid-cols-2">
-        <div className="relative aspect-[4/3]">
-          <Image
-            src={pair.before}
-            alt={`${pair.alt} — before ${trade} work`}
-            fill
-            priority={priority}
-            sizes={sizes}
-            className="object-cover"
-          />
-          <span className="absolute bottom-2 left-2 bg-black/70 text-white text-xs font-bold px-2 py-1 rounded">
-            BEFORE
-          </span>
+      <div className="relative bg-white p-2.5">
+        <div className="grid grid-cols-2">
+          <div className="relative aspect-[4/5]">
+            <Image
+              src={pair.before}
+              alt={`${pair.alt} — before ${trade} work`}
+              fill
+              priority={priority}
+              sizes={sizes}
+              className="object-cover"
+            />
+            <span className="absolute bottom-2 left-2 bg-black/75 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-white">
+              Before
+            </span>
+          </div>
+
+          <div className="relative aspect-[4/5]">
+            <Image
+              src={pair.after}
+              alt={`${pair.alt} — after ${trade} work`}
+              fill
+              priority={priority}
+              sizes={sizes}
+              className="object-cover"
+            />
+            <span className="absolute bottom-2 left-2 bg-orange px-2 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-white">
+              After
+            </span>
+          </div>
         </div>
 
-        <div className="relative aspect-[4/3]">
-          <Image
-            src={pair.after}
-            alt={`${pair.alt} — after ${trade} work`}
-            fill
-            priority={priority}
-            sizes={sizes}
-            className="object-cover"
-          />
-          <span className="absolute bottom-2 left-2 bg-orange text-white text-xs font-bold px-2 py-1 rounded">
-            AFTER
-          </span>
-        </div>
+        <figcaption className="flex items-baseline justify-between gap-3 px-1 pt-3 pb-1 font-mono text-[10px] uppercase tracking-[0.16em] text-gray-500">
+          <span>{pair.label}</span>
+          <span className="text-orange-dark">Documented</span>
+        </figcaption>
       </div>
     </figure>
   );

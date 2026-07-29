@@ -15,8 +15,11 @@ import { Smartphone } from "lucide-react";
  */
 
 interface AppBadgesProps {
-  /** "light" inverts the treatment for dark backgrounds such as the footer. */
-  variant?: "dark" | "light";
+  /**
+   * "light" inverts for dark backgrounds such as the footer. "outline" is the quiet
+   * treatment — solid black blocks anchored too much weight in the homepage hero.
+   */
+  variant?: "dark" | "light" | "outline";
   className?: string;
   align?: "start" | "center";
 }
@@ -34,9 +37,16 @@ export function AppBadges({
   const shell =
     variant === "dark"
       ? "bg-black text-white ring-1 ring-black/10"
+      : variant === "outline"
+      ? "bg-white text-black ring-1 ring-black/20"
       : "bg-white/10 text-white ring-1 ring-white/25";
 
-  const topLine = variant === "dark" ? "text-white/70" : "text-white/60";
+  const topLine =
+    variant === "dark"
+      ? "text-white/70"
+      : variant === "outline"
+      ? "text-gray-500"
+      : "text-white/60";
 
   return (
     <div

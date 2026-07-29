@@ -1,129 +1,141 @@
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { AppBadges } from "../AppBadges";
 import { Button } from "../ui";
 
 /**
- * Hero: the problem on the left of the arrow, the product's output on the right.
+ * Hero: figure and ground.
  *
- * Both images are static and marked priority — the LCP element stays a plain
- * <Image> with no client JS, which is what got LCP down to ~2s in Phase 6.
+ * The camera roll is not a card sitting next to the product — it is the ground the
+ * product came out of. A dark field of near-identical job photos bleeds off the right
+ * edge, and one finished, branded proof rests on it as a physical print: slightly
+ * rotated, with a hard unblurred shadow rather than the soft blur every SaaS card uses.
+ *
+ * The seam between white and field is hard on purpose. It is the same seam the app
+ * puts between a before and an after.
+ *
+ * Desktop runs the field as a full-bleed right column. Mobile stacks it beneath the
+ * copy instead — as an overlay it swallowed the spec strip and the app badges.
  */
+
+const FIELD_STYLE = {
+  backgroundImage: "url('/proof/camera-roll-field.jpg')",
+  // Small enough that the tile repeat stops reading as a pattern and starts reading
+  // as sheer quantity, which is the point.
+  backgroundSize: "228px auto",
+} as const;
+
+function FieldMeta({ className = "" }: { className?: string }) {
+  return (
+    <p
+      className={`font-mono text-[11px] uppercase leading-relaxed tracking-[0.16em] text-white/60 ${className}`}
+    >
+      <span className="text-white">4,312 photos</span>
+      <br />
+      none of them labelled
+    </p>
+  );
+}
+
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-20 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-orange-light/30 via-white to-white" />
+    <section className="relative isolate overflow-hidden bg-white">
+      {/* Desktop field. Starts below the nav so its transparent dark links stay legible. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-20 bottom-0 hidden w-1/2 lg:block"
+      >
+        <div className="absolute inset-0 bg-repeat" style={FIELD_STYLE} />
+        <div className="absolute inset-0 bg-black/66" />
+      </div>
 
-      <div className="relative max-w-[1200px] mx-auto px-6 lg:px-8 w-full">
-        {/*
-          Explicit row/column placement so the visual sits between the headline and
-          the CTAs on mobile — it is the pitch, and it was landing below the fold —
-          while staying a single right-hand column on desktop.
-        */}
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 lg:items-center">
-          {/* Headline block */}
-          <div className="order-1 text-center lg:text-left lg:col-start-1 lg:row-start-1">
-            <div className="inline-flex items-center gap-2 bg-orange-light text-orange-dark px-4 py-2 rounded-full text-sm font-medium mb-6 lg:mb-8">
-              <span className="w-2 h-2 bg-orange rounded-full animate-pulse" />
-              NEW — AI-powered captions
-            </div>
+      <FieldMeta className="pointer-events-none absolute bottom-12 right-10 z-10 hidden text-right lg:block" />
 
-            <h1 className="font-display font-black text-[2.75rem] md:text-6xl lg:text-[5rem] leading-[0.92] tracking-[-0.04em] text-black uppercase mb-5">
+      <div className="relative mx-auto max-w-[1200px] px-6 lg:px-8">
+        <div className="grid items-center gap-y-0 pt-28 lg:min-h-screen lg:grid-cols-2 lg:gap-x-10 lg:pt-24 lg:pb-24">
+          {/* The claim */}
+          <div className="pb-14 lg:pb-0 lg:pr-10">
+            <h1 className="font-display font-black uppercase text-black text-[3.25rem] leading-[0.86] tracking-[-0.045em] sm:text-7xl lg:text-[5.5rem]">
               Share
               <br />
-              The
+              the
               <br />
-              Proof.
+              <span className="text-orange">Proof.</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-lg mx-auto lg:mx-0">
-              Before &amp; after documentation for contractors who mean business.
-              Combine, brand, share — in 30 seconds.
+            <p className="mt-7 max-w-md text-lg leading-relaxed text-gray-600 lg:text-xl">
+              Before and after documentation for contractors. Two photos in, one
+              branded proof out, in about thirty seconds.
             </p>
-          </div>
 
-          {/* Conversion block — order-3 puts the visual above it on mobile */}
-          <div className="order-3 text-center lg:text-left lg:col-start-1 lg:row-start-2">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-7">
               <Button href="https://app.proofshotpro.com/signup" showArrow>
                 Claim My Free Account
               </Button>
-              <Button href="#features" variant="secondary">
-                See How It Works
-              </Button>
+              <Link
+                href="#features"
+                className="font-display font-bold text-gray-900 underline decoration-orange decoration-2 underline-offset-[6px] transition-colors hover:text-orange"
+              >
+                See how it works
+              </Link>
             </div>
 
-            <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center lg:justify-start mt-6 text-sm text-gray-500">
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-green rounded-full" />
-                AI-powered captions
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-green rounded-full" />
-                Free to start
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-green rounded-full" />
-                30-second workflow
-              </span>
-            </div>
+            {/* Spec strip. Monospace because this product's subject is documentation. */}
+            <ul className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[11px] uppercase tracking-[0.16em] text-gray-500">
+              {["AI captions", "Free to start", "30-second workflow"].map((spec, i) => (
+                <li key={spec} className="flex items-center gap-5">
+                  {i > 0 && (
+                    <span className="h-3 w-px bg-gray-300" aria-hidden="true" />
+                  )}
+                  <span className="flex items-center gap-2">
+                    <span
+                      className="h-1 w-1 rounded-full bg-green"
+                      aria-hidden="true"
+                    />
+                    {spec}
+                  </span>
+                </li>
+              ))}
+            </ul>
 
-            <AppBadges className="mt-8" />
+            <AppBadges variant="outline" className="mt-8" />
           </div>
 
-          {/* chaos → proof */}
-          <div className="order-2 max-w-[520px] w-full mx-auto lg:mx-0 lg:ml-auto lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center">
-            {/* Image band. The arrow centres on this row, not on the captions. */}
-            <div className="relative grid grid-cols-2 gap-4 sm:gap-6">
-              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-lg ring-1 ring-black/10 bg-black">
-                <Image
-                  src="/proof/camera-roll-hero.jpg"
-                  alt="A phone camera roll filled with dozens of near-identical driveway job photos"
-                  fill
-                  priority
-                  fetchPriority="high"
-                  sizes="(max-width: 640px) 42vw, (max-width: 1024px) 240px, 240px"
-                  className="object-cover"
-                />
-              </div>
-
-              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/10">
-                <Image
-                  src="/proof/composite.jpg"
-                  alt="A finished before and after post carrying the contractor's own company branding, made with ProofShot Pro"
-                  fill
-                  priority
-                  sizes="(max-width: 640px) 42vw, (max-width: 1024px) 240px, 240px"
-                  className="object-cover"
-                />
-              </div>
-
-              <div
-                aria-hidden="true"
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-              >
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange text-white shadow-lg ring-4 ring-white">
-                  <ArrowRight className="h-5 w-5" />
-                </span>
-              </div>
+          {/* The one that made it out */}
+          <div className="relative -mx-6 px-6 py-14 lg:mx-0 lg:px-0 lg:py-0">
+            {/* Mobile field: a band the card sits on, rather than an overlay. */}
+            <div aria-hidden="true" className="absolute inset-0 lg:hidden">
+              <div className="absolute inset-0 bg-repeat" style={FIELD_STYLE} />
+              <div className="absolute inset-0 bg-black/66" />
             </div>
 
-            {/* Captions */}
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 mt-4 text-center">
-              <p className="text-sm text-gray-500 leading-snug">
-                <span className="block font-display font-bold text-gray-900">
-                  4,000 photos
-                </span>
-                Which one was the before?
-              </p>
-              <p className="text-sm text-gray-500 leading-snug">
-                <span className="block font-display font-bold text-gray-900">
-                  30 seconds later
-                </span>
-                Branded, and ready to send.
-              </p>
-            </div>
+            <figure className="relative mx-auto w-full max-w-[330px] lg:mx-0 lg:-ml-14 xl:-ml-20">
+              <div className="relative rotate-[-1.25deg] transition-transform duration-500 ease-out hover:rotate-0 motion-reduce:transition-none motion-reduce:hover:rotate-[-1.25deg]">
+                {/* Hard offset shadow, no blur. A print on a pile, not a floating panel. */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 translate-x-3 translate-y-3 bg-orange"
+                />
+                <div className="relative bg-white p-2.5">
+                  <Image
+                    src="/proof/composite.jpg"
+                    alt="A finished before and after post carrying the contractor's own company branding, made with ProofShot Pro"
+                    width={760}
+                    height={760}
+                    priority
+                    fetchPriority="high"
+                    sizes="(max-width: 1024px) 330px, 330px"
+                    className="w-full"
+                  />
+                  <figcaption className="flex items-baseline justify-between gap-3 px-1 pt-3 pb-1 font-mono text-[10px] uppercase tracking-[0.16em] text-gray-500">
+                    <span>Proof_roof-wash.jpg</span>
+                    <span className="text-orange-dark">Ready to send</span>
+                  </figcaption>
+                </div>
+              </div>
+            </figure>
+
+            <FieldMeta className="relative mx-auto mt-10 max-w-[330px] lg:hidden" />
           </div>
         </div>
       </div>

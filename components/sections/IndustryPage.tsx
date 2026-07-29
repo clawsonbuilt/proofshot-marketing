@@ -64,48 +64,88 @@ export function IndustryPageTemplate({ industry }: IndustryPageProps) {
           }}
         />
 
-        {/* Hero Section — two columns when there's real photography, centred without */}
-        <section className="pt-32 lg:pt-36 pb-16 lg:pb-20 bg-gradient-to-b from-orange-light/50 to-white">
+        {/*
+          Hero. Ground is the trade's own "before" — its actual mess, enlarged and
+          pushed back. Figure is the documented comparison, sitting on it as a print.
+          Trades without a pair keep a centred single column rather than an empty field.
+        */}
+        <section className="relative isolate overflow-hidden bg-white">
+          {heroPair && (
+            <>
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute right-0 top-20 bottom-0 hidden w-1/2 lg:block"
+              >
+                <Image
+                  src={heroPair.before}
+                  alt=""
+                  fill
+                  priority
+                  sizes="50vw"
+                  className="object-cover object-[50%_68%]"
+                />
+                <div className="absolute inset-0 bg-black/72" />
+              </div>
+              <p className="pointer-events-none absolute bottom-12 right-10 z-10 hidden text-right font-mono text-[11px] uppercase leading-relaxed tracking-[0.16em] text-white/60 lg:block">
+                <span className="text-white">Before</span>
+                <br />
+                every job starts here
+              </p>
+            </>
+          )}
+
           <div
-            className={`mx-auto px-6 lg:px-8 ${
-              heroPair ? "max-w-[1200px]" : "max-w-[1000px]"
+            className={`relative mx-auto px-6 lg:px-8 ${
+              heroPair ? "max-w-[1200px]" : "max-w-[900px]"
             }`}
           >
             <div
               className={
                 heroPair
-                  ? "grid lg:grid-cols-2 gap-10 lg:gap-16 items-center"
-                  : ""
+                  ? "grid items-center pt-28 lg:min-h-[82vh] lg:grid-cols-2 lg:gap-x-10 lg:pt-24 lg:pb-20"
+                  : "pt-32 pb-20 text-center lg:pt-40 lg:pb-24"
               }
             >
-              <div className={heroPair ? "text-center lg:text-left" : "text-center"}>
-                <p className="text-orange font-display font-bold uppercase tracking-wide mb-4">
-                  For {industry.name} Professionals
+              <div className={heroPair ? "pb-14 lg:pb-0 lg:pr-10" : ""}>
+                <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.18em] text-orange-dark">
+                  For {industry.name} professionals
                 </p>
-                <h1 className="font-display font-black text-4xl md:text-5xl lg:text-6xl text-black uppercase tracking-tight mb-6">
+                <h1 className="font-display font-black uppercase tracking-[-0.04em] text-black text-[2.75rem] leading-[0.9] md:text-5xl lg:text-[3.75rem]">
                   {industry.headline}
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-600 mb-8">
+                <p className="mt-6 max-w-md text-lg text-gray-600 lg:text-xl">
                   {industry.tagline}
                 </p>
-                <Button href="https://app.proofshotpro.com/signup" showArrow>
-                  Claim My Free Account
-                </Button>
-                <p className="text-sm text-gray-500 mt-4">
+                <div className="mt-9">
+                  <Button href="https://app.proofshotpro.com/signup" showArrow>
+                    Claim My Free Account
+                  </Button>
+                </div>
+                <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-gray-500">
                   No credit card required
                 </p>
               </div>
 
               {heroPair && (
-                <div className="max-w-[520px] w-full mx-auto lg:mx-0 lg:ml-auto">
-                  <BeforeAfterCard
-                    pair={heroPair}
-                    industryName={industry.name}
-                    priority
-                  />
-                  <p className="mt-3 text-center text-sm text-gray-500">
-                    The kind of transformation worth documenting.
-                  </p>
+                <div className="relative -mx-6 px-6 py-14 lg:mx-0 lg:px-0 lg:py-0">
+                  <div aria-hidden="true" className="absolute inset-0 lg:hidden">
+                    <Image
+                      src={heroPair.before}
+                      alt=""
+                      fill
+                      sizes="100vw"
+                      className="object-cover object-[50%_68%]"
+                    />
+                    <div className="absolute inset-0 bg-black/72" />
+                  </div>
+
+                  <div className="relative mx-auto w-full max-w-[380px] lg:mx-0 lg:-ml-14 xl:-ml-20">
+                    <BeforeAfterCard
+                      pair={heroPair}
+                      industryName={industry.name}
+                      priority
+                    />
+                  </div>
                 </div>
               )}
             </div>
