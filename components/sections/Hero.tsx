@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { AppBadges } from "../AppBadges";
+import { ProofTemplate } from "../ProofTemplate";
 import { Button } from "../ui";
 
 /**
@@ -109,7 +109,7 @@ export function Hero() {
               <div className="absolute inset-0 bg-black/66" />
             </div>
 
-            <figure className="relative mx-auto w-full max-w-[330px] lg:mx-0 lg:-ml-14 xl:-ml-20">
+            <figure className="relative mx-auto w-full max-w-[360px] lg:mx-0 lg:ml-auto lg:mr-0">
               <div className="relative rotate-[-1.25deg] transition-transform duration-500 ease-out hover:rotate-0 motion-reduce:transition-none motion-reduce:hover:rotate-[-1.25deg]">
                 {/* Hard offset shadow, no blur. A print on a pile, not a floating panel. */}
                 <div
@@ -117,15 +117,12 @@ export function Hero() {
                   className="absolute inset-0 translate-x-3 translate-y-3 bg-orange"
                 />
                 <div className="relative bg-white p-2.5">
-                  <Image
-                    src="/proof/composite.jpg"
-                    alt="A finished before and after post carrying the contractor's own company branding, made with ProofShot Pro"
-                    width={760}
-                    height={760}
+                  <ProofTemplate
+                    before="/industries/roofing/before-1.jpg"
+                    after="/industries/roofing/after-1.jpg"
+                    alt="a roof washing job"
+                    service="Roof washing · Spring, TX"
                     priority
-                    fetchPriority="high"
-                    sizes="(max-width: 1024px) 330px, 330px"
-                    className="w-full"
                   />
                   <figcaption className="flex items-baseline justify-between gap-3 px-1 pt-3 pb-1 font-mono text-[10px] uppercase tracking-[0.16em] text-gray-500">
                     <span>Proof_roof-wash.jpg</span>
