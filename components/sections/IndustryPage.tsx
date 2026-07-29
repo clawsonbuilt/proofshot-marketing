@@ -2,6 +2,9 @@ import Image from "next/image";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui";
+// Re-enabled in Phase B once public/industries/* assets exist; see the commented
+// gallery block near the bottom of this file.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { BeforeAfterGallery } from "./BeforeAfterGallery";
 import { Industry, getRelatedIndustries } from "@/lib/industries";
 import {
