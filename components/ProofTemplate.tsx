@@ -3,177 +3,258 @@ import Image from "next/image";
 interface ProofTemplateProps {
   before: string;
   after: string;
-  /** Describes the job for screen readers, e.g. "a roof washing job". */
+  /** Describes the job for screen readers, e.g. "a driveway pressure washing job". */
   alt: string;
-  companyName: string;
   serviceTitle: string;
   websiteUrl: string;
+  /** Company logo. The Bold template has a real logo slot, unlike Modern. */
+  logoSrc?: string;
   priority?: boolean;
 }
 
 /**
- * A faithful reproduction of the app's Modern template.
+ * A faithful reproduction of the app's Bold template.
  *
- * Ported from proofshot-pro/components/html-template-preview/templates/modern-template.tsx,
- * which renders at a native 960×960 with absolute pixel coordinates. Every value here is
- * that same coordinate divided by 960, so the layout is identical at any size:
- * percentages for position and size, cqw for type and radii.
+ * Ported from proofshot-pro/components/html-template-preview/templates/bold-template.tsx,
+ * which renders at a native 960×960 with absolute pixel coordinates and diagonal
+ * clip paths. Every value here is that coordinate over 960 — percentages for position
+ * and size, cqw for type — so the layout is identical at any scale.
  *
- * Container-query note: cqw resolves against the nearest ANCESTOR container, so the
- * @container class sits on the wrapper and everything sized in cqw is a descendant.
- * Putting both on one element silently measures the viewport instead.
+ * The original clips with SVG clipPath at userSpaceOnUse, which is fixed to those pixel
+ * coordinates. CSS polygon percentages give the same shape and scale with the box.
+ *
+ * Container-query note: cqw resolves against the nearest ANCESTOR container, so
+ * @container sits on the wrapper and everything sized in cqw is a descendant.
  */
 
-/** Native template coordinate space. */
 const N = 960;
 const pct = (px: number) => `${(px / N) * 100}%`;
 const cqw = (px: number) => `${(px / N) * 100}cqw`;
 
 const INK = "#2F2F2F";
-const POPPINS = "Poppins, Inter, system-ui, sans-serif";
+
+// Native coordinates from the source template.
+const PHOTO_TOP = 162.18;
+const PHOTO_H = 696;
+const LABEL_TOP = 784.09;
+const LABEL_H = 74.09;
+const LABEL_CENTER_Y = 40.64;
+
+// Diagonal seam. The before wedge runs 574.39 → 375.61; the after wedge 590.56 → 391.76.
+const BEFORE_CLIP = `polygon(0% 0%, ${(574.39 / N) * 100}% 0%, ${
+  (375.61 / N) * 100
+}% 100%, 0% 100%)`;
+const AFTER_CLIP = `polygon(${(590.56 / N) * 100}% 0%, 100% 0%, 100% 100%, ${
+  (391.76 / N) * 100
+}% 100%)`;
 
 export function ProofTemplate({
   before,
   after,
   alt,
-  companyName,
   serviceTitle,
   websiteUrl,
+  logoSrc = "/logos/logo-orange-horizontal.svg",
   priority = false,
 }: ProofTemplateProps) {
-  const photoSizes = "(max-width: 1024px) 40vw, 200px";
+  const photoSizes = "(max-width: 1024px) 40vw, 220px";
 
   return (
-    <div className="@container aspect-square overflow-hidden bg-[#F3F2EF]">
-      <div
-        className="relative h-full w-full"
-        style={{ fontFamily: POPPINS, color: INK }}
-      >
-        {/* Company name — 29px Black, right-aligned at y=97 */}
+    <div className="@container aspect-square overflow-hidden bg-white">
+      <div className="relative h-full w-full font-sans" style={{ color: INK }}>
+        {/* Company logo — 228×76 at (35, 41) */}
         <div
           style={{
             position: "absolute",
-            top: pct(97),
-            right: pct(86),
-            textAlign: "right",
-            fontSize: cqw(29),
-            fontWeight: 900,
-            letterSpacing: cqw(-0.86),
-            textTransform: "uppercase",
-            lineHeight: 1,
+            top: pct(41),
+            left: pct(35),
+            width: pct(228),
+            height: pct(76),
           }}
         >
-          {companyName}
+          <Image
+            src={logoSrc}
+            alt="ProofShot Pro"
+            fill
+            sizes="240px"
+            className="object-contain object-left"
+          />
         </div>
 
-        {/* Service title — 24px Light at y=128 */}
+        {/* Service title — 34px Black Italic, top right */}
         <div
           style={{
             position: "absolute",
-            top: pct(128),
-            right: pct(86),
+            top: pct(58),
+            right: pct(35),
             textAlign: "right",
-            fontSize: cqw(24),
-            fontWeight: 300,
-            letterSpacing: cqw(-0.72),
+            fontSize: cqw(34),
+            fontWeight: 900,
+            fontStyle: "italic",
             textTransform: "uppercase",
+            whiteSpace: "nowrap",
             lineHeight: 1,
           }}
         >
           {serviceTitle}
         </div>
 
-        {/* Before photo — 366×366 at (97, 191) */}
+        {/* Before photo — diagonal wedge */}
         <div
           style={{
             position: "absolute",
-            top: pct(191),
-            left: pct(97),
-            width: pct(366),
-            height: pct(366),
-            borderRadius: cqw(17),
-            overflow: "hidden",
+            top: pct(PHOTO_TOP),
+            left: 0,
+            width: "100%",
+            height: pct(PHOTO_H),
+            clipPath: BEFORE_CLIP,
           }}
         >
-          <Image
-            src={before}
-            alt={`Before ${alt}`}
-            fill
-            priority={priority}
-            sizes={photoSizes}
-            className="object-cover"
-          />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: pct(574.39),
+              height: "100%",
+            }}
+          >
+            <Image
+              src={before}
+              alt={`Before ${alt}`}
+              fill
+              priority={priority}
+              sizes={photoSizes}
+              className="object-cover"
+            />
+          </div>
         </div>
 
-        {/* "before" — 109px SemiBold at (91, 569) */}
+        {/* After photo — diagonal wedge */}
         <div
           style={{
             position: "absolute",
-            top: pct(569),
-            left: pct(91),
-            fontSize: cqw(109),
-            fontWeight: 600,
-            letterSpacing: cqw(-7.64),
+            top: pct(PHOTO_TOP),
+            left: 0,
+            width: "100%",
+            height: pct(PHOTO_H),
+            clipPath: AFTER_CLIP,
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: pct(391.76),
+              width: pct(568.24),
+              height: "100%",
+            }}
+          >
+            <Image
+              src={after}
+              alt={`After ${alt}`}
+              fill
+              priority={priority}
+              sizes={photoSizes}
+              className="object-cover"
+            />
+          </div>
+        </div>
+
+        {/* BEFORE label — diagonal black strip */}
+        <div
+          style={{
+            position: "absolute",
+            top: pct(LABEL_TOP),
+            left: 0,
+            width: pct(396.77),
+            height: pct(LABEL_H),
+            backgroundColor: "rgba(0, 0, 0, 0.75)",
+            clipPath: `polygon(0 0, 100% 0, ${
+              (375.61 / 396.77) * 100
+            }% 100%, 0 100%)`,
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: pct(LABEL_TOP + LABEL_CENTER_Y),
+            left: 0,
+            width: pct(349.76),
+            transform: "translateY(-50%)",
+            textAlign: "right",
+            fontSize: cqw(34),
+            fontWeight: 900,
+            fontStyle: "italic",
+            color: "white",
             lineHeight: 1,
           }}
         >
-          before
+          BEFORE
         </div>
 
-        {/* After photo — 366×366 at (504, 432) */}
+        {/* AFTER label — diagonal black strip */}
         <div
           style={{
             position: "absolute",
-            top: pct(432),
-            left: pct(504),
-            width: pct(366),
-            height: pct(366),
-            borderRadius: cqw(17),
-            overflow: "hidden",
+            top: pct(LABEL_TOP),
+            left: pct(391.76),
+            width: pct(N - 391.76),
+            height: pct(LABEL_H),
+            backgroundColor: "rgba(0, 0, 0, 0.75)",
+            clipPath: `polygon(${
+              ((412.93 - 391.76) / (N - 391.76)) * 100
+            }% 0, 100% 0, 100% 100%, 0 100%)`,
           }}
-        >
-          <Image
-            src={after}
-            alt={`After ${alt}`}
-            fill
-            priority={priority}
-            sizes={photoSizes}
-            className="object-cover"
-          />
-        </div>
-
-        {/* "after" — 145px Bold at (546, 287) */}
+        />
         <div
           style={{
             position: "absolute",
-            top: pct(287),
-            left: pct(546),
-            fontSize: cqw(145),
-            fontWeight: 700,
-            letterSpacing: cqw(-10.16),
+            top: pct(LABEL_TOP + LABEL_CENTER_Y),
+            left: pct(438.77),
+            transform: "translateY(-50%)",
+            fontSize: cqw(34),
+            fontWeight: 900,
+            fontStyle: "italic",
+            color: "white",
             lineHeight: 1,
           }}
         >
-          after
+          AFTER
         </div>
 
-        {/* "SEE MORE AT <url>" — 24px, Light then Black, at (97, 835) */}
+        {/* Footer — centred, "see more at" over the URL */}
         <div
           style={{
             position: "absolute",
-            top: pct(835),
-            left: pct(97),
+            top: pct(890),
+            left: 0,
+            width: "100%",
             display: "flex",
-            alignItems: "baseline",
-            gap: cqw(7),
-            fontSize: cqw(24),
-            letterSpacing: cqw(-0.72),
-            textTransform: "uppercase",
-            lineHeight: 1,
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <span style={{ fontWeight: 300 }}>See more at</span>
-          <span style={{ fontWeight: 900 }}>{websiteUrl}</span>
+          <span
+            style={{
+              fontSize: cqw(14),
+              fontWeight: 300,
+              fontStyle: "italic",
+              lineHeight: 1,
+            }}
+          >
+            see more at
+          </span>
+          <span
+            style={{
+              fontSize: cqw(24),
+              fontWeight: 900,
+              fontStyle: "italic",
+              lineHeight: 1,
+              marginTop: cqw(2),
+            }}
+          >
+            {websiteUrl}
+          </span>
         </div>
       </div>
     </div>

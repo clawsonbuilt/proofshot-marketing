@@ -9,6 +9,7 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  style: ["normal", "italic"],
   variable: "--font-inter",
 });
 

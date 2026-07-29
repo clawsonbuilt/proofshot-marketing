@@ -118,16 +118,15 @@ export function Hero() {
                 />
                 <div className="relative bg-white p-2.5">
                   <ProofTemplate
-                    before="/industries/roofing/before-1.jpg"
-                    after="/industries/roofing/after-1.jpg"
-                    alt="a roof washing job"
-                    companyName="ProofShot Pro"
-                    serviceTitle="Roof washing · Spring, TX"
+                    before="/proof/job-before.jpg"
+                    after="/proof/job-after.jpg"
+                    alt="a driveway pressure washing job"
+                    serviceTitle="Pressure washing"
                     websiteUrl="proofshotpro.com"
                     priority
                   />
                   <figcaption className="flex items-baseline justify-between gap-3 px-1 pt-3 pb-1 font-mono text-[10px] uppercase tracking-[0.16em] text-gray-500">
-                    <span>Proof_roof-wash.jpg</span>
+                    <span>Proof_driveway.jpg</span>
                     <span className="text-orange-dark">Ready to send</span>
                   </figcaption>
                 </div>
