@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "Read the terms and conditions for using ProofShot Pro services.",
   openGraph: {
+    images: ["/opengraph-image"],
     title: "Terms of Service — ProofShot Pro",
     description:
       "Read the terms and conditions for using ProofShot Pro services.",

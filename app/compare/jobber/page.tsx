@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "Compare ProofShot Pro and Jobber. See pricing, features, and which is best for photo documentation.",
   openGraph: {
+    images: ["/opengraph-image"],
     title: "ProofShot Pro vs Jobber (2026 Comparison)",
     description:
       "Compare ProofShot Pro and Jobber. See pricing, features, and which is best for photo documentation.",

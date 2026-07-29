@@ -43,6 +43,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
+    images: ["/opengraph-image"],
     type: "website",
     locale: "en_US",
     url: "https://proofshotpro.com",

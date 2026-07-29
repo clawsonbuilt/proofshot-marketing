@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description:
     "Start free, upgrade when ready. $29.99/mo for unlimited projects, 3 team members, AI captions. No hidden fees.",
   openGraph: {
+    images: ["/opengraph-image"],
     title: "Pricing — ProofShot Pro",
     description:
       "Start free, upgrade when ready. $29.99/mo for unlimited projects, 3 team members, AI captions. No hidden fees.",

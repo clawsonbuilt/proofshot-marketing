@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Roof Repair & Replacement Documentation — ProofShot Pro",
   description: industry?.metaDescription,
   openGraph: {
+    images: ["/opengraph-image"],
     title: "Roof Repair & Replacement Documentation — ProofShot Pro",
     description: industry?.metaDescription,
     url: "https://proofshotpro.com/industries/roofing",

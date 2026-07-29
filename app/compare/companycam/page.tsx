@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "Compare ProofShot Pro and CompanyCam. See pricing, features, and which is best for your business.",
   openGraph: {
+    images: ["/opengraph-image"],
     title: "ProofShot Pro vs CompanyCam (2026 Comparison)",
     description:
       "Compare ProofShot Pro and CompanyCam. See pricing, features, and which is best for your business.",

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { Button } from "@/components/ui";
 import { getAllBlogPosts, getFeaturedPost } from "@/lib/blog";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import Link from "next/link";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
   description:
     "Tips, guides, and insights for service professionals. Learn how to document your work, grow your business, and win more customers.",
   openGraph: {
+    images: ["/opengraph-image"],
     title: "Blog — ProofShot Pro",
     description:
       "Tips, guides, and insights for service professionals. Learn how to document your work, grow your business, and win more customers.",
@@ -159,13 +161,9 @@ export default function BlogPage() {
             <p className="text-gray-600 mb-6">
               Put these tips into practice with ProofShot Pro.
             </p>
-            <Link
-              href="https://app.proofshotpro.com/signup"
-              className="inline-flex items-center gap-2 bg-orange text-white px-6 py-3 rounded-full font-display font-bold hover:bg-orange-hover transition-colors"
-            >
-              Get Started Free
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            <Button href="https://app.proofshotpro.com/signup" size="small" showArrow>
+              Claim My Free Account
+            </Button>
           </div>
         </section>
       </main>

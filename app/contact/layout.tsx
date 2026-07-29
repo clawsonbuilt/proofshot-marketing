@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     "Contact the ProofShot Pro team. Email hello@proofshotpro.com or use our contact form for support, sales, or partnership inquiries.",
   openGraph: {
+    images: ["/opengraph-image"],
     title: "Contact Us — ProofShot Pro",
     description:
       "Contact the ProofShot Pro team. Email hello@proofshotpro.com or use our contact form for support, sales, or partnership inquiries.",

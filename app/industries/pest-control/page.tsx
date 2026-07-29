@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Pest Control Photo Documentation — ProofShot Pro",
   description: industry?.metaDescription,
   openGraph: {
+    images: ["/opengraph-image"],
     title: "Pest Control Photo Documentation — ProofShot Pro",
     description: industry?.metaDescription,
     url: "https://proofshotpro.com/industries/pest-control",

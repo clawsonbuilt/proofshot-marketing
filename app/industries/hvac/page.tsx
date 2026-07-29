@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "HVAC Service Documentation — ProofShot Pro",
   description: industry?.metaDescription,
   openGraph: {
+    images: ["/opengraph-image"],
     title: "HVAC Service Documentation — ProofShot Pro",
     description: industry?.metaDescription,
     url: "https://proofshotpro.com/industries/hvac",

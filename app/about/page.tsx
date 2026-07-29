@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description:
     "ProofShot Pro was founded by contractors Trey and Daniel in Tomball, TX to help service professionals document their work with branded before & after photos.",
   openGraph: {
+    images: ["/opengraph-image"],
     title: "About — ProofShot Pro",
     description:
       "ProofShot Pro was founded by contractors Trey and Daniel in Tomball, TX to help service professionals document their work with branded before & after photos.",

@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   description:
     "Finally, a contractor photo app priced for owner operators. Free to start, just $29.99/mo for Pro. No per-seat pricing. Professional documentation without breaking the bank.",
   openGraph: {
+    images: ["/opengraph-image"],
     title: "Best Photo App for Owner Operators & Solo Contractors — ProofShot Pro",
     description:
       "Finally, a contractor photo app priced for owner operators. Free to start, just $29.99/mo for Pro. No per-seat pricing.",

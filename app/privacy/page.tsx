@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "Learn how ProofShot Pro collects, uses, and protects your personal information and data.",
   openGraph: {
+    images: ["/opengraph-image"],
     title: "Privacy Policy — ProofShot Pro",
     description:
       "Learn how ProofShot Pro collects, uses, and protects your personal information and data.",

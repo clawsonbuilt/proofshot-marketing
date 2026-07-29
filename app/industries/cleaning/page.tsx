@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Professional Photos for Cleaning Services — ProofShot Pro",
   description: industry?.metaDescription,
   openGraph: {
+    images: ["/opengraph-image"],
     title: "Professional Photos for Cleaning Services — ProofShot Pro",
     description: industry?.metaDescription,
     url: "https://proofshotpro.com/industries/cleaning",

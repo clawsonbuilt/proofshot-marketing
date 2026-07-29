@@ -156,6 +156,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${post.title} — ProofShot Pro Blog`,
     description: post.excerpt,
     openGraph: {
+      images: ["/opengraph-image"],
       title: `${post.title} — ProofShot Pro Blog`,
       description: post.excerpt,
       url: `https://proofshotpro.com/blog/${post.slug}`,
@@ -396,7 +397,7 @@ export default async function BlogPostPage({ params }: Props) {
               Start documenting your work professionally today.
             </p>
             <Button href="https://app.proofshotpro.com/signup" showArrow>
-              Get Started Free
+              Claim My Free Account
             </Button>
           </div>
         </section>

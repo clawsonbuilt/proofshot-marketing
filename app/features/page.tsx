@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   description:
     "Before/after photos, branded PDF reports, AI captions, team access. See everything ProofShot Pro offers for contractors.",
   openGraph: {
+    images: ["/opengraph-image"],
     title: "Features — ProofShot Pro",
     description:
       "Before/after photos, branded PDF reports, AI captions, team access. See everything ProofShot Pro offers for contractors.",
