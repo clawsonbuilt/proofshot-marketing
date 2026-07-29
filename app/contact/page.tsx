@@ -8,6 +8,7 @@ import { Send, CheckCircle } from "lucide-react";
 
 export default function ContactPage() {
   const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,14 +19,30 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormState("submitting");
+    setErrorMessage("");
 
-    // Simulate form submission - replace with actual form handler (Formspree, API route, etc.)
     try {
-      // In production, replace this with actual form submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const body = await response.json().catch(() => ({}));
+        setErrorMessage(
+          body.error ?? "Something went wrong. Please try again or email us directly."
+        );
+        setFormState("error");
+        return;
+      }
+
       setFormState("success");
       setFormData({ name: "", email: "", subject: "general", message: "" });
     } catch {
+      setErrorMessage(
+        "We couldn't reach the server. Check your connection, or email us directly."
+      );
       setFormState("error");
     }
   };
@@ -157,8 +174,12 @@ export default function ContactPage() {
 
                 {/* Error Message */}
                 {formState === "error" && (
-                  <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-red-600 text-sm">
-                    Something went wrong. Please try again or email us directly.
+                  <div
+                    role="alert"
+                    className="bg-red-50 border border-red-200 rounded-xl p-4 text-red-600 text-sm"
+                  >
+                    {errorMessage ||
+                      "Something went wrong. Please try again or email us directly."}
                   </div>
                 )}
 
