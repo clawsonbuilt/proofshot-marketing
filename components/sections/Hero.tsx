@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AppBadges } from "../AppBadges";
-import { ProofTemplate } from "../ProofTemplate";
+import { ProofPrint } from "../ProofPrint";
 import { Button } from "../ui";
 
 /**
@@ -117,29 +117,15 @@ export function Hero() {
             {/* Mobile field: a band the card sits on, rather than an overlay. */}
             <Field className="absolute inset-0 lg:hidden" />
 
-            <figure className="relative mx-auto w-full max-w-[360px] lg:mx-0 lg:ml-auto lg:mr-0">
-              <div className="relative rotate-[1.25deg] transition-transform duration-500 ease-out hover:rotate-0 motion-reduce:transition-none motion-reduce:hover:rotate-[1.25deg]">
-                {/* Hard offset shadow, no blur. A print on a pile, not a floating panel. */}
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 -translate-x-3 translate-y-3 bg-orange"
-                />
-                <div className="relative bg-white p-2.5">
-                  <ProofTemplate
-                    before="/proof/job-before.jpg"
-                    after="/proof/job-after.jpg"
-                    alt="a driveway pressure washing job"
-                    serviceTitle="Pressure washing"
-                    websiteUrl="proofshotpro.com"
-                    priority
-                  />
-                  <figcaption className="flex items-baseline justify-between gap-3 px-1 pt-3 pb-1 font-mono text-[10px] uppercase tracking-[0.16em] text-gray-500">
-                    <span>Proof_driveway.jpg</span>
-                    <span className="text-orange-dark">Ready to send</span>
-                  </figcaption>
-                </div>
-              </div>
-            </figure>
+            <ProofPrint
+              before="/proof/job-before.jpg"
+              after="/proof/job-after.jpg"
+              alt="a driveway pressure washing job"
+              serviceTitle="Pressure washing"
+              fileName="Proof_driveway.jpg"
+              priority
+              className="mx-auto w-full max-w-[360px] lg:mx-0 lg:ml-auto lg:mr-0"
+            />
 
             <FieldMeta className="relative mx-auto mt-10 max-w-[330px] lg:hidden" />
           </div>

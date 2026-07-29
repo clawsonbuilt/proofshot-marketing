@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui";
-import { BeforeAfterCard } from "./BeforeAfterCard";
+import { ProofPrint } from "@/components/ProofPrint";
 import { IndustryFAQ } from "./IndustryFAQ";
 import {
   Industry,
@@ -139,13 +139,15 @@ export function IndustryPageTemplate({ industry }: IndustryPageProps) {
                     <div className="absolute inset-0 bg-black/72" />
                   </div>
 
-                  <div className="relative mx-auto w-full max-w-[380px] lg:mx-0 lg:-ml-14 xl:-ml-20">
-                    <BeforeAfterCard
-                      pair={heroPair}
-                      industryName={industry.name}
-                      priority
-                    />
-                  </div>
+                  <ProofPrint
+                    before={heroPair.before}
+                    after={heroPair.after}
+                    alt={`a ${industry.name.toLowerCase()} job`}
+                    serviceTitle={industry.name}
+                    fileName={`Proof_${industry.slug}.jpg`}
+                    priority
+                    className="relative mx-auto w-full max-w-[380px] lg:mx-0 lg:ml-auto lg:mr-0"
+                  />
                 </div>
               )}
             </div>
