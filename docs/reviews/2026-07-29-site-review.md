@@ -3,11 +3,35 @@
 **Date:** 2026-07-29
 **Scope:** full-repo code audit, UI/UX exploration, SEO + AEO analysis, app-store badge
 compliance, before/after asset plan
-**Status:** analysis only — no application code has been changed except one build fix
-(see P0-3). Nothing here is implemented yet.
+**Status:** ✅ **Implemented.** Everything P0 and P1 below shipped the same day. This
+document is kept as the record of what was wrong and why, not as a to-do list.
 
 Every claim below was verified in-session. Commands and their output are quoted so you
 can re-run them.
+
+---
+
+## Resolution
+
+| Area | Outcome |
+|---|---|
+| **All P0** | Fixed. Contact form sends through Resend (delivery confirmed, not just HTTP 200); lint clean; local build unbroken; Organization logo resolves; every page has an `og:image`. |
+| **All P1** | Fixed. Scroll-listener churn, mobile-menu focus trap, dropdown ARIA + Escape, FAQ focus rings, FAQ copy bugs, CSP hardening, image `sizes`, hub pages, CTA labels, copyright year, stale browser data. |
+| **P2 dead code** | 575 lines removed, including the components promising "thousands of contractors". |
+| **UI/UX** | Heroes rebuilt around figure-and-ground; home + 10 of 11 industries lead with real photography. See CLAUDE.md Critical Rule 6. |
+| **SEO/AEO** | `llms.txt`, two hub pages, BreadcrumbList + FAQPage schema, 44 trade FAQs (industry pages ~345 → ~700 words), duplicate blog posts consolidated with a 308. |
+
+**Still open** — none of it code:
+
+- Owner-operator before/after pair (custom page; reads fine without one)
+- Apple pre-order badge — swap in official artwork once pre-orders are live
+- Google Search Console submission — every blocker cleared; checklist in §3 below
+- Google's badge rules remain unverified (see §4)
+
+**Superseded since publication:** §2 recommends re-enabling `BeforeAfterGallery`. That
+component was instead replaced by `ProofPrint` in the hero, because one pair per industry
+made a three-up grid the wrong shape. §5's asset plan is complete apart from
+owner-operator.
 
 ---
 
