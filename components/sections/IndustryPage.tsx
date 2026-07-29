@@ -28,6 +28,36 @@ export function IndustryPageTemplate({ industry }: IndustryPageProps) {
     <>
       <Navigation />
       <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "https://proofshotpro.com",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Industries",
+                  item: "https://proofshotpro.com/industries",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: industry.name,
+                  item: `https://proofshotpro.com/industries/${industry.slug}`,
+                },
+              ],
+            }),
+          }}
+        />
+
         {/* Hero Section — two columns when there's real photography, centred without */}
         <section className="pt-32 lg:pt-36 pb-16 lg:pb-20 bg-gradient-to-b from-orange-light/50 to-white">
           <div

@@ -51,17 +51,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Industry pages
+  // Industry pages, hub first
   const industries = getAllIndustries();
-  const industryPages = industries.map((industry) => ({
-    url: `${baseUrl}/industries/${industry.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
+  const industryPages = [
+    {
+      url: `${baseUrl}/industries`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    ...industries.map((industry) => ({
+      url: `${baseUrl}/industries/${industry.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+  ];
 
-  // Comparison pages
+  // Comparison pages, hub first
   const comparisonPages = [
+    {
+      url: `${baseUrl}/compare`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
     {
       url: `${baseUrl}/compare/companycam`,
       lastModified: new Date(),

@@ -9,6 +9,7 @@ import { AppBadges } from "./AppBadges";
 import { Button } from "./ui";
 
 const industries = [
+  { href: "/industries", label: "All Industries", featured: false },
   { href: "/industries/owner-operator", label: "Owner Operators", featured: true },
   { href: "/industries/cleaning", label: "Cleaning" },
   { href: "/industries/handyman", label: "Handyman" },

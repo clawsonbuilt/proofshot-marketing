@@ -69,6 +69,35 @@ export default function JobberComparisonPage() {
     <>
       <Navigation />
       <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "https://proofshotpro.com",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Compare",
+                  item: "https://proofshotpro.com/compare",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: "ProofShot Pro vs Jobber",
+                  item: "https://proofshotpro.com/compare/jobber",
+                },
+              ],
+            }),
+          }}
+        />
         {/* Hero Section */}
         <section className="pt-32 lg:pt-36 pb-16 lg:pb-20">
           <div className="max-w-[900px] mx-auto px-6 lg:px-8 text-center">

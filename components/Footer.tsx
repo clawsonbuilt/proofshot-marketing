@@ -6,15 +6,15 @@ const footerLinks = {
   product: [
     { name: "Features", href: "/features" },
     { name: "Pricing", href: "/pricing" },
-    { name: "Industries", href: "/industries/pressure-washing" },
-    { name: "Compare", href: "/compare/companycam" },
+    { name: "Industries", href: "/industries" },
+    { name: "Compare", href: "/compare" },
   ],
   industries: [
     { name: "Owner Operators", href: "/industries/owner-operator", featured: true },
     { name: "Pressure Washing", href: "/industries/pressure-washing" },
     { name: "Pest Control", href: "/industries/pest-control" },
     { name: "Landscaping", href: "/industries/landscaping" },
-    { name: "More Industries →", href: "/industries/painting" },
+    { name: "All Industries →", href: "/industries" },
   ],
   company: [
     { name: "About", href: "/about" },

@@ -27,7 +27,7 @@ Your before and after images aren't just proof of great work—they're one of th
 
 ## 1. Create Scroll-Stopping Social Media Content
 
-Before and after images perform **300% better** on social media than regular posts. Here's why they work:
+Before and after images consistently outperform ordinary job photos on social media. Here's why they work:
 
 - **Instant visual impact**: The transformation grabs attention in a crowded feed
 - **Proof without words**: People see the quality before reading anything
@@ -183,54 +183,6 @@ With ProofShot Pro, you can turn your before and after photos into branded, prof
     readTime: "4 min read",
     featured: true,
     image: "/blog/how-to-take-better-before-after-photos.jpg",
-  },
-  {
-    slug: "5-ways-before-after-photos-get-more-customers",
-    title: "5 Ways to Use Before/After Photos to Get More Customers",
-    excerpt:
-      "Discover how smart contractors turn every job into a marketing opportunity with strategic use of before and after documentation.",
-    content: `
-# 5 Ways to Use Before/After Photos to Get More Customers
-
-You're already doing the work. Why not turn every job into a marketing opportunity? Here are five proven ways to use before/after photos to grow your business.
-
-## 1. Social Media Marketing
-
-Before/after transformations are some of the most engaging content on social media. People love seeing dramatic changes — it's why home makeover shows are so popular.
-
-**Platforms that work best:**
-- Instagram (visual-first, perfect for transformations)
-- Facebook (great for local business pages)
-- TikTok (video before/afters perform incredibly well)
-
-## 2. Google Business Profile
-
-Add your best before/after photos to your Google Business Profile. When potential customers search for your services, these images show up in the search results.
-
-## 3. Customer Follow-ups
-
-Send a before/after photo with your invoice or follow-up email. It reminds customers of the value you provided and makes them more likely to leave a positive review.
-
-## 4. Estimate Presentations
-
-When meeting with potential customers, show them before/afters from similar jobs. "Here's what we did for your neighbor" is incredibly persuasive.
-
-## 5. Review Requests
-
-Include a before/after image when you ask for reviews. It reminds customers of the transformation and gives them something specific to mention in their review.
-
-## Make It Easy
-
-The key is making documentation effortless. That's why we built ProofShot Pro — so you can combine, brand, and share your photos in 30 seconds. [Get started free](https://app.proofshotpro.com/signup).
-    `,
-    category: "Marketing",
-    author: {
-      name: "Trey",
-      role: "Founder",
-    },
-    publishedAt: "2026-01-10",
-    readTime: "5 min read",
-    image: "/blog/5-ways-before-after-photos-get-more-customers.jpg",
   },
   {
     slug: "complete-guide-documenting-your-work",

@@ -5,6 +5,18 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000, // 1 year — screenshots are static
   },
+  async redirects() {
+    return [
+      {
+        // Consolidated into the longer post on the same topic — the two were
+        // competing for the same query. This URL is already indexed, so it
+        // redirects rather than 404s.
+        source: "/blog/5-ways-before-after-photos-get-more-customers",
+        destination: "/blog/top-5-ways-to-get-customers-from-before-after-images",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
