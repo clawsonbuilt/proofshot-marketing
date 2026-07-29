@@ -2,9 +2,6 @@ import Image from "next/image";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui";
-// Re-enabled in Phase B once public/industries/* assets exist; see the commented
-// gallery block near the bottom of this file.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { BeforeAfterGallery } from "./BeforeAfterGallery";
 import { Industry, getRelatedIndustries } from "@/lib/industries";
 import {
@@ -139,6 +136,7 @@ export function IndustryPageTemplate({ industry }: IndustryPageProps) {
                         alt={`ProofShot Pro app showing a ${industry.name.toLowerCase()} project`}
                         width={280}
                         height={607}
+                        sizes="(max-width: 1024px) 270px, 280px"
                         className="w-full h-full object-cover"
                         style={{ objectPosition: "center 11.5%" }}
                       />
@@ -182,9 +180,10 @@ export function IndustryPageTemplate({ industry }: IndustryPageProps) {
                     <div className="h-[220px] bg-gray-900 overflow-hidden">
                       <Image
                         src={screenshots[index % screenshots.length]}
-                        alt={`${useCase.title} screenshot`}
+                        alt={`ProofShot Pro app: ${useCase.title.toLowerCase()}`}
                         width={400}
                         height={220}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 280px"
                         className="w-full h-full object-cover"
                         style={{ objectPosition: "center 11.5%" }}
                       />
@@ -211,14 +210,14 @@ export function IndustryPageTemplate({ industry }: IndustryPageProps) {
           </div>
         </section>
 
-        {/* Before & After Gallery — hidden for now, will re-enable later */}
-        {/* {industry.gallery && industry.gallery.length > 0 && (
+        {/* Before & After Gallery — renders nothing for industries without assets */}
+        {industry.gallery && industry.gallery.length > 0 && (
           <BeforeAfterGallery
             title={`${industry.name} Before & Afters`}
             pairs={industry.gallery}
             industryName={industry.name}
           />
-        )} */}
+        )}
 
         {/* CTA Section */}
         <section className="py-16 lg:py-20 bg-gradient-to-b from-white via-orange-light/30 to-orange-light/50">

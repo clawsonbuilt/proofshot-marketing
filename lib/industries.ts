@@ -68,11 +68,7 @@ export const industries: Record<string, Industry> = {
           "Timestamped documentation protects you when customers question your work.",
       },
     ],
-    gallery: [
-      { before: "/industries/owner-operator/before-1.webp", after: "/industries/owner-operator/after-1.webp", alt: "Room renovation", label: "Interior Reno" },
-      { before: "/industries/owner-operator/before-2.webp", after: "/industries/owner-operator/after-2.webp", alt: "Porch restoration", label: "Front Porch" },
-      { before: "/industries/owner-operator/before-3.webp", after: "/industries/owner-operator/after-3.webp", alt: "Under-sink plumbing", label: "Plumbing" },
-    ],
+    gallery: [],
     relatedIndustries: ["pressure-washing", "pest-control", "landscaping", "cleaning"],
     metaDescription:
       "Finally, a contractor photo app priced for owner operators. Free to start, just $29.99/mo for Pro. No per-seat pricing.",
@@ -122,9 +118,7 @@ export const industries: Record<string, Industry> = {
       },
     ],
     gallery: [
-      { before: "/industries/pressure-washing/before-1.webp", after: "/industries/pressure-washing/after-1.webp", alt: "Concrete driveway", label: "Driveway" },
-      { before: "/industries/pressure-washing/before-2.webp", after: "/industries/pressure-washing/after-2.webp", alt: "Wooden deck", label: "Deck" },
-      { before: "/industries/pressure-washing/before-3.webp", after: "/industries/pressure-washing/after-3.webp", alt: "Vinyl siding", label: "Siding" },
+      { before: "/industries/pressure-washing/before-1.jpg", after: "/industries/pressure-washing/after-1.jpg", alt: "Concrete entryway washing", label: "Entryway" },
     ],
     relatedIndustries: ["cleaning", "painting", "roofing", "pool-service"],
     metaDescription:
@@ -175,9 +169,7 @@ export const industries: Record<string, Industry> = {
       },
     ],
     gallery: [
-      { before: "/industries/pest-control/before-1.webp", after: "/industries/pest-control/after-1.webp", alt: "Wasp nest removal", label: "Wasp Nest" },
-      { before: "/industries/pest-control/before-2.webp", after: "/industries/pest-control/after-2.webp", alt: "Rodent entry point sealed", label: "Rodent Entry" },
-      { before: "/industries/pest-control/before-3.webp", after: "/industries/pest-control/after-3.webp", alt: "Termite damage repair", label: "Termite Damage" },
+      { before: "/industries/pest-control/before-1.jpg", after: "/industries/pest-control/after-1.jpg", alt: "Wasp nest removal", label: "Wasp Nest" },
     ],
     relatedIndustries: ["cleaning", "hvac", "roofing", "landscaping"],
     metaDescription:
@@ -228,9 +220,7 @@ export const industries: Record<string, Industry> = {
       },
     ],
     gallery: [
-      { before: "/industries/landscaping/before-1.webp", after: "/industries/landscaping/after-1.webp", alt: "Front lawn transformation", label: "Lawn" },
-      { before: "/industries/landscaping/before-2.webp", after: "/industries/landscaping/after-2.webp", alt: "Garden bed renovation", label: "Garden Bed" },
-      { before: "/industries/landscaping/before-3.webp", after: "/industries/landscaping/after-3.webp", alt: "Tree canopy shaping", label: "Tree Trimming" },
+      { before: "/industries/landscaping/before-1.jpg", after: "/industries/landscaping/after-1.jpg", alt: "Front yard landscaping", label: "Front Yard" },
     ],
     relatedIndustries: ["pool-service", "painting", "cleaning", "pressure-washing"],
     metaDescription:
@@ -281,9 +271,7 @@ export const industries: Record<string, Industry> = {
       },
     ],
     gallery: [
-      { before: "/industries/cleaning/before-1.webp", after: "/industries/cleaning/after-1.webp", alt: "Kitchen deep clean", label: "Kitchen" },
-      { before: "/industries/cleaning/before-2.webp", after: "/industries/cleaning/after-2.webp", alt: "Bathroom cleaning", label: "Bathroom" },
-      { before: "/industries/cleaning/before-3.webp", after: "/industries/cleaning/after-3.webp", alt: "Carpet deep cleaning", label: "Carpet" },
+      { before: "/industries/cleaning/before-1.jpg", after: "/industries/cleaning/after-1.jpg", alt: "Kitchen deep clean", label: "Kitchen" },
     ],
     relatedIndustries: ["pressure-washing", "painting", "handyman", "pest-control"],
     metaDescription:
@@ -333,11 +321,7 @@ export const industries: Record<string, Industry> = {
           "Show potential customers your work history during estimates.",
       },
     ],
-    gallery: [
-      { before: "/industries/painting/before-1.webp", after: "/industries/painting/after-1.webp", alt: "Interior wall painting", label: "Interior Walls" },
-      { before: "/industries/painting/before-2.webp", after: "/industries/painting/after-2.webp", alt: "Exterior house painting", label: "Exterior" },
-      { before: "/industries/painting/before-3.webp", after: "/industries/painting/after-3.webp", alt: "Cabinet refinishing", label: "Cabinets" },
-    ],
+    gallery: [],
     relatedIndustries: ["pressure-washing", "home-remodeling", "cleaning", "landscaping"],
     metaDescription:
       "Document paint jobs professionally. Before/after photos from prep to perfection. Free to start.",
@@ -387,9 +371,7 @@ export const industries: Record<string, Industry> = {
       },
     ],
     gallery: [
-      { before: "/industries/roofing/before-1.webp", after: "/industries/roofing/after-1.webp", alt: "Shingle replacement", label: "Shingles" },
-      { before: "/industries/roofing/before-2.webp", after: "/industries/roofing/after-2.webp", alt: "Storm damage roof repair", label: "Storm Damage" },
-      { before: "/industries/roofing/before-3.webp", after: "/industries/roofing/after-3.webp", alt: "Gutter cleaning and guards", label: "Gutter" },
+      { before: "/industries/roofing/before-1.jpg", after: "/industries/roofing/after-1.jpg", alt: "Weathered roof restored", label: "Roof" },
     ],
     relatedIndustries: ["hvac", "painting", "pressure-washing", "pest-control"],
     metaDescription:
@@ -440,9 +422,7 @@ export const industries: Record<string, Industry> = {
       },
     ],
     gallery: [
-      { before: "/industries/hvac/before-1.webp", after: "/industries/hvac/after-1.webp", alt: "HVAC filter replacement", label: "Filter" },
-      { before: "/industries/hvac/before-2.webp", after: "/industries/hvac/after-2.webp", alt: "Condenser unit cleaning", label: "Condenser" },
-      { before: "/industries/hvac/before-3.webp", after: "/industries/hvac/after-3.webp", alt: "Duct cleaning", label: "Ductwork" },
+      { before: "/industries/hvac/before-1.jpg", after: "/industries/hvac/after-1.jpg", alt: "Condenser unit replacement", label: "AC Install" },
     ],
     relatedIndustries: ["pest-control", "roofing", "cleaning", "painting"],
     metaDescription:
@@ -492,11 +472,7 @@ export const industries: Record<string, Industry> = {
           "Photograph pump, filter, and equipment condition for maintenance records.",
       },
     ],
-    gallery: [
-      { before: "/industries/pool-service/before-1.webp", after: "/industries/pool-service/after-1.webp", alt: "Pool algae treatment", label: "Pool Water" },
-      { before: "/industries/pool-service/before-2.webp", after: "/industries/pool-service/after-2.webp", alt: "Pool tile descaling", label: "Tile" },
-      { before: "/industries/pool-service/before-3.webp", after: "/industries/pool-service/after-3.webp", alt: "Pool equipment upgrade", label: "Equipment" },
-    ],
+    gallery: [],
     relatedIndustries: ["landscaping", "pressure-washing", "cleaning", "pest-control"],
     metaDescription:
       "Document pool cleaning with stunning before/after photos. Crystal clear results, crystal clear proof. Free to start.",
@@ -546,9 +522,7 @@ export const industries: Record<string, Industry> = {
       },
     ],
     gallery: [
-      { before: "/industries/home-remodeling/before-1.webp", after: "/industries/home-remodeling/after-1.webp", alt: "Kitchen remodel", label: "Kitchen" },
-      { before: "/industries/home-remodeling/before-2.webp", after: "/industries/home-remodeling/after-2.webp", alt: "Bathroom remodel", label: "Bathroom" },
-      { before: "/industries/home-remodeling/before-3.webp", after: "/industries/home-remodeling/after-3.webp", alt: "Floor replacement", label: "Flooring" },
+      { before: "/industries/home-remodeling/before-1.jpg", after: "/industries/home-remodeling/after-1.jpg", alt: "Bathroom remodel", label: "Bathroom" },
     ],
     relatedIndustries: ["painting", "roofing", "handyman", "cleaning"],
     metaDescription:
@@ -599,9 +573,7 @@ export const industries: Record<string, Industry> = {
       },
     ],
     gallery: [
-      { before: "/industries/handyman/before-1.webp", after: "/industries/handyman/after-1.webp", alt: "Drywall hole repair", label: "Drywall" },
-      { before: "/industries/handyman/before-2.webp", after: "/industries/handyman/after-2.webp", alt: "Faucet replacement", label: "Faucet" },
-      { before: "/industries/handyman/before-3.webp", after: "/industries/handyman/after-3.webp", alt: "Fence board replacement", label: "Fence" },
+      { before: "/industries/handyman/before-1.jpg", after: "/industries/handyman/after-1.jpg", alt: "Backyard deck build", label: "Deck Build" },
     ],
     relatedIndustries: ["home-remodeling", "painting", "cleaning", "hvac"],
     metaDescription:
