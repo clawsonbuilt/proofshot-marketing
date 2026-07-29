@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui";
 import { Lightbulb, Camera, DollarSign, Smartphone } from "lucide-react";
 import type { Metadata } from "next";
@@ -52,19 +53,16 @@ export default function AboutPage() {
     <>
       <Navigation />
       <main id="main">
-        {/* Hero Section */}
-        <section className="pt-32 lg:pt-40 pb-16 lg:pb-24">
-          <div className="max-w-[900px] mx-auto px-6 lg:px-8 text-center">
-            <p className="text-orange font-display font-bold uppercase tracking-wide mb-4">
-              About ProofShot Pro
-            </p>
-            <h1 className="font-display font-black text-4xl md:text-5xl lg:text-6xl text-black uppercase tracking-tight mb-6">
-              Built for Contractors.
+        <PageHero
+          eyebrow="About ProofShot Pro"
+          title={
+            <>
+              Built for contractors.
               <br />
-              By a Contractor.
-            </h1>
-          </div>
-        </section>
+              By a contractor.
+            </>
+          }
+        />
 
         {/* Origin Story */}
         <section className="py-12 lg:py-16 bg-gray-50">

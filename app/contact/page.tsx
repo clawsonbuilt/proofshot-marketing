@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui";
 import { CONTACT_EMAIL } from "@/lib/site";
 import { Send, CheckCircle } from "lucide-react";
@@ -61,17 +62,11 @@ export default function ContactPage() {
     <>
       <Navigation />
       <main id="main">
-        {/* Hero Section */}
-        <section className="pt-32 lg:pt-36 pb-16 lg:pb-20">
-          <div className="max-w-[600px] mx-auto px-6 lg:px-8 text-center">
-            <h1 className="font-display font-black text-4xl md:text-5xl text-black uppercase tracking-tight mb-4">
-              Contact Us
-            </h1>
-            <p className="text-lg text-gray-600">
-              Have a question? We&apos;d love to hear from you.
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Get in touch"
+          title="Contact us"
+          subtitle="Support, sales, or partnerships. We read every message and reply within one business day."
+        />
 
         {/* Contact Form */}
         <section className="pb-16 lg:pb-24">

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui";
 import { AppBadges } from "@/components/AppBadges";
 import {
@@ -154,20 +155,12 @@ export default function FeaturesPage() {
     <>
       <Navigation />
       <main id="main">
-        {/* Hero Section */}
-        <section className="pt-32 lg:pt-40 pb-16 lg:pb-24">
-          <div className="max-w-[900px] mx-auto px-6 lg:px-8 text-center">
-            <h1 className="font-display font-black text-4xl md:text-5xl lg:text-6xl text-black uppercase tracking-tight mb-6">
-              Features
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-4">
-              Everything you need to document your work professionally.
-            </p>
-            <p className="text-lg text-gray-500">
-              Built for contractors. Not adapted from something else.
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="What it does"
+          title="Everything you need to document a job"
+          subtitle="Built for contractors, not adapted from something built for someone else."
+          note="Free to start · No credit card required"
+        />
 
         {/* Feature Deep-Dives */}
         {features.map((feature, index) => {

@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui";
 import { Check, X, DollarSign, Zap, Target } from "lucide-react";
 import type { Metadata } from "next";
@@ -97,17 +98,11 @@ export default function CompanyCamComparisonPage() {
             }),
           }}
         />
-        {/* Hero Section */}
-        <section className="pt-32 lg:pt-36 pb-16 lg:pb-20">
-          <div className="max-w-[900px] mx-auto px-6 lg:px-8 text-center">
-            <h1 className="font-display font-black text-4xl md:text-5xl lg:text-6xl text-black uppercase tracking-tight mb-6">
-              ProofShot Pro vs CompanyCam
-            </h1>
-            <p className="text-xl text-gray-600">
-              See how we compare.
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Comparison"
+          title="ProofShot Pro vs CompanyCam"
+          subtitle="Priced for crews. If you are one truck and a helper, you are paying for coordination you do not need."
+        />
 
         {/* Quick Verdict */}
         <section className="pb-12 lg:pb-16">

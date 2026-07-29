@@ -24,10 +24,10 @@ export function BeforeAfterCard({
   const trade = industryName.toLowerCase();
 
   return (
-    <figure className="relative rotate-[-1.25deg] transition-transform duration-500 ease-out hover:rotate-0 motion-reduce:transition-none motion-reduce:hover:rotate-[-1.25deg]">
+    <figure className="relative rotate-[1.25deg] transition-transform duration-500 ease-out hover:rotate-0 motion-reduce:transition-none motion-reduce:hover:rotate-[1.25deg]">
       <div
         aria-hidden="true"
-        className="absolute inset-0 translate-x-3 translate-y-3 bg-orange"
+        className="absolute inset-0 -translate-x-3 translate-y-3 bg-orange"
       />
 
       <div className="relative bg-white p-2.5">

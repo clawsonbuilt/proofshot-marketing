@@ -73,7 +73,7 @@ export default function CompareHubPage() {
 
         <section className="pt-32 lg:pt-36 pb-12 lg:pb-16 bg-gradient-to-b from-orange-light/50 to-white">
           <div className="max-w-[840px] mx-auto px-6 lg:px-8 text-center">
-            <p className="text-orange-dark font-display font-bold uppercase tracking-wide mb-4">
+            <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.18em] text-orange-dark">
               Straight comparisons
             </p>
             <h1 className="font-display font-black text-4xl md:text-5xl lg:text-6xl text-black uppercase tracking-tight mb-6">

@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui";
 import { AppBadges } from "@/components/AppBadges";
 import { Check, Shield } from "lucide-react";
@@ -90,19 +91,12 @@ export default function PricingPage() {
     <>
       <Navigation />
       <main id="main">
-        {/* Hero Section */}
-        <section className="pt-32 lg:pt-36 pb-16 lg:pb-20">
-          <div className="max-w-[1200px] mx-auto px-6 lg:px-8 text-center">
-            <h1 className="font-display font-black text-4xl md:text-5xl lg:text-6xl text-black uppercase tracking-tight mb-4">
-              Simple, Transparent Pricing
-            </h1>
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-              Start free. Upgrade when you need more.
-              <br />
-              No hidden fees. Cancel anytime.
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Pricing"
+          title="Start free. Upgrade when you need more."
+          subtitle="No hidden fees, and the free tier is permanent rather than a trial. Cancel anytime."
+          note="No credit card required"
+        />
 
         {/* First-Month Promo Banner */}
         <section className="pb-8">

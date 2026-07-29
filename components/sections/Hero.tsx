@@ -110,11 +110,11 @@ export function Hero() {
             </div>
 
             <figure className="relative mx-auto w-full max-w-[360px] lg:mx-0 lg:ml-auto lg:mr-0">
-              <div className="relative rotate-[-1.25deg] transition-transform duration-500 ease-out hover:rotate-0 motion-reduce:transition-none motion-reduce:hover:rotate-[-1.25deg]">
+              <div className="relative rotate-[1.25deg] transition-transform duration-500 ease-out hover:rotate-0 motion-reduce:transition-none motion-reduce:hover:rotate-[1.25deg]">
                 {/* Hard offset shadow, no blur. A print on a pile, not a floating panel. */}
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 translate-x-3 translate-y-3 bg-orange"
+                  className="absolute inset-0 -translate-x-3 translate-y-3 bg-orange"
                 />
                 <div className="relative bg-white p-2.5">
                   <ProofTemplate

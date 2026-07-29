@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui";
 import { getAllBlogPosts, getFeaturedPost } from "@/lib/blog";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
@@ -34,17 +35,11 @@ export default function BlogPage() {
     <>
       <Navigation />
       <main id="main">
-        {/* Hero Section */}
-        <section className="pt-32 lg:pt-36 pb-16 lg:pb-20">
-          <div className="max-w-[900px] mx-auto px-6 lg:px-8 text-center">
-            <h1 className="font-display font-black text-4xl md:text-5xl lg:text-6xl text-black uppercase tracking-tight mb-4">
-              Blog
-            </h1>
-            <p className="text-xl text-gray-600">
-              Tips, guides, and insights for service professionals.
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Guides"
+          title="Documenting work, done properly"
+          subtitle="Practical guidance on photographing jobs, turning them into proof, and getting more out of the work you already do."
+        />
 
         {/* Featured Post */}
         {featuredPost && (

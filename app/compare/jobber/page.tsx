@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui";
 import { Check, X, DollarSign, Camera, Zap } from "lucide-react";
 import type { Metadata } from "next";
@@ -98,17 +99,11 @@ export default function JobberComparisonPage() {
             }),
           }}
         />
-        {/* Hero Section */}
-        <section className="pt-32 lg:pt-36 pb-16 lg:pb-20">
-          <div className="max-w-[900px] mx-auto px-6 lg:px-8 text-center">
-            <h1 className="font-display font-black text-4xl md:text-5xl lg:text-6xl text-black uppercase tracking-tight mb-6">
-              ProofShot Pro vs Jobber
-            </h1>
-            <p className="text-xl text-gray-600">
-              Different tools for different jobs.
-            </p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Comparison"
+          title="ProofShot Pro vs Jobber"
+          subtitle="Field service management with photos as one feature among many. ProofShot Pro does the photo part and nothing else."
+        />
 
         {/* Quick Verdict */}
         <section className="pb-12 lg:pb-16">
