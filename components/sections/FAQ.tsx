@@ -7,7 +7,7 @@ const faqs = [
   {
     question: "What devices does ProofShot work on?",
     answer:
-      "ProofShot is a Progressive Web App that works on any modern smartphone or tablet. Install it directly from your browser — no app store needed. Works on iPhone, Android, iPad, and desktop.",
+      "ProofShot runs in your browser today on iPhone, Android, iPad, and desktop — install it straight from the browser and it behaves like a native app, with nothing to download. Dedicated iOS and Android apps are on the way.",
   },
   {
     question: "Can I use my own logo?",

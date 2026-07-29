@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { AppBadges } from "../AppBadges";
 import { Button } from "../ui";
 
 /**
@@ -67,6 +68,8 @@ export function Hero() {
                 30-second workflow
               </span>
             </div>
+
+            <AppBadges className="mt-8" />
           </div>
 
           {/* chaos → proof */}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { AppBadges } from "./AppBadges";
 import { Button } from "./ui";
 
 const industries = [
@@ -328,6 +329,7 @@ export function Navigation() {
             >
               Claim My Free Account
             </Button>
+            <AppBadges align="center" className="mt-6" />
           </div>
         </div>
       </div>

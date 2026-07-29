@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui";
+import { AppBadges } from "@/components/AppBadges";
 import {
   Camera,
   Layout,
@@ -326,6 +327,7 @@ export default function FeaturesPage() {
               Claim My Free Account
             </Button>
             <p className="text-sm text-gray-500 mt-4">No credit card required</p>
+            <AppBadges align="center" className="mt-8" />
           </div>
         </section>
       </main>

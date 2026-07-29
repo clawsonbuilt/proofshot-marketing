@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui";
+import { AppBadges } from "@/components/AppBadges";
 import { Check, Shield } from "lucide-react";
 import type { Metadata } from "next";
 import { PricingFAQ } from "./pricing-faq";
@@ -237,6 +238,7 @@ export default function PricingPage() {
             <Button href="https://app.proofshotpro.com/signup" showArrow>
               Claim My Free Account
             </Button>
+            <AppBadges align="center" className="mt-8" />
           </div>
         </section>
       </main>

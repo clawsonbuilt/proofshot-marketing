@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { AppBadges } from "./AppBadges";
 
 const footerLinks = {
   product: [
@@ -52,6 +53,8 @@ export function Footer() {
             >
               Claim My Free Account →
             </Link>
+
+            <AppBadges variant="light" className="mt-8" />
           </div>
 
           {/* Product Links */}
