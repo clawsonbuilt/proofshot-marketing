@@ -596,3 +596,264 @@ export function getRelatedIndustries(slug: string): Industry[] {
     .map((s) => industries[s])
     .filter(Boolean);
 }
+
+export interface IndustryFaq {
+  question: string;
+  answer: string;
+}
+
+/**
+ * Trade-specific FAQs.
+ *
+ * Question-shaped headings with direct answers are what answer engines extract, and
+ * the industry pages previously had none. Every answer is distinct across trades —
+ * eleven pages repeating the same text would read as duplicate content.
+ */
+export const industryFaqs: Record<string, IndustryFaq[]> = {
+  "roofing": [
+    {
+      question: "What photos should a roofer take on every job?",
+      answer:
+        "Wide shots of each slope before anything comes off, close-ups of the damage or wear you were called out for, whatever you find once the old material is up, and matching wide shots from the same angles at the end. The before angles matter most \u2014 adjusters and homeowners both judge the work against them.",
+    },
+    {
+      question: "Do before and after photos help with roofing insurance claims?",
+      answer:
+        "They are often the difference between an approved claim and a disputed one. Timestamped photos taken before work begins establish the condition you arrived to, and matching after photos document what was actually replaced. Keeping them together per job means you are not digging through a camera roll when an adjuster asks.",
+    },
+    {
+      question: "How do I photograph a roof I cannot get far enough back from?",
+      answer:
+        "Shoot from fixed points on the ground \u2014 a driveway corner, the edge of the lawn \u2014 and return to the same spots afterwards, rather than trying to fit the whole roof into one frame. A consistent vantage point makes the comparison obvious even when you can only capture one plane at a time.",
+    },
+    {
+      question: "Can I put my roofing company's logo on the photos?",
+      answer:
+        "Yes. Your logo and company details are applied to reports and templates automatically once you set them up. The free plan puts ProofShot branding on outputs; Pro at $29.99 a month replaces it with yours.",
+    },
+  ],
+  "pressure-washing": [
+    {
+      question: "What is the best way to shoot before and after pressure washing photos?",
+      answer:
+        "Stand in the same spot for both, at a similar time of day, with a fixed reference in frame \u2014 a downspout, a step, a planter. Wet concrete reads far darker than dry concrete, so either let the after shot dry or take it wet in both, otherwise the comparison undersells the work.",
+    },
+    {
+      question: "Why do my pressure washing before and afters look less impressive than the job did?",
+      answer:
+        "Almost always one of three things: the angle moved, the light changed, or the after was shot while the surface was still soaked. Matching the framing fixes most of it. On long runs of concrete, a single frame showing the clean line halfway across often reads better than two separate photos.",
+    },
+    {
+      question: "How do pressure washing companies use photos to win more work?",
+      answer:
+        "The before and after is the pitch. Posted to social it explains the service faster than any description. Sent with the invoice it justifies the price while the result is still fresh. Attached to a review request, it makes the review far more persuasive to whoever reads it next.",
+    },
+    {
+      question: "How long does documenting a pressure washing job actually take?",
+      answer:
+        "About as long as taking the two photos. You tap before when you arrive, tap after when you pack up, and the layout, branding, and caption are generated for you. There is no project to set up first.",
+    },
+  ],
+  "pest-control": [
+    {
+      question: "What should pest control technicians photograph on a service call?",
+      answer:
+        "Entry points, activity or damage you find, the treatment areas, and any nest or harbourage before removal \u2014 then the same locations afterwards. Much of pest work is invisible when done properly, so the before photo is what makes the value legible to the customer.",
+    },
+    {
+      question: "How do photos protect a pest control business in a dispute?",
+      answer:
+        "They establish what the property looked like before you treated it. If a customer later reports activity or damage, timestamped documentation of the original conditions and the work performed answers the question directly instead of turning into one word against another.",
+    },
+    {
+      question: "Do customers actually want to see pest control photos?",
+      answer:
+        "Many do, particularly for wasp nests, rodent exclusion, and termite damage where the removal is dramatic and the customer never saw the problem up close. For routine treatments, a short branded report tends to land better than photos alone.",
+    },
+    {
+      question: "Can I document a route of several stops without setting up each one?",
+      answer:
+        "Yes. Each job is just a before photo and an after photo \u2014 there is no project scaffolding to fill in first. The free plan covers 5 projects a month; Pro removes the cap for routes where every stop gets documented.",
+    },
+  ],
+  "landscaping": [
+    {
+      question: "What landscaping photos are worth taking on every job?",
+      answer:
+        "A wide establishing shot of the whole area from the street or the patio door, plus detail shots of the beds, edging, or hardscape you are actually changing. Return to the exact same standing positions at the end \u2014 landscaping comparisons fall apart when the angle drifts.",
+    },
+    {
+      question: "How do I show a landscaping transformation that took several days?",
+      answer:
+        "Photograph the same fixed vantage points at the start of each day rather than only at the beginning and end. Multi-day jobs make better content when the sequence is visible, and it also protects you if weather or a change order stretches the timeline.",
+    },
+    {
+      question: "Why do landscaping before and afters matter more than a portfolio description?",
+      answer:
+        "Because the customer cannot picture the outcome from words. A photographed transformation of a yard that looked like theirs does the selling on its own, which is why before and after content tends to outperform written service lists on social.",
+    },
+    {
+      question: "Can I add my company details to landscaping photos automatically?",
+      answer:
+        "Yes. Once your logo and contact details are saved they appear on every branded output and PDF report without you doing anything per job. Pro at $29.99 a month removes ProofShot branding so only yours shows.",
+    },
+  ],
+  "cleaning": [
+    {
+      question: "What should a cleaner photograph to prove the work was done?",
+      answer:
+        "The areas most likely to be questioned later \u2014 kitchens, bathrooms, floors, and any spot the client flagged in advance. Shoot from the doorway for consistency, then repeat the identical frame afterwards. Good cleaning is invisible, so the before photo is what makes it visible.",
+    },
+    {
+      question: "How do before and after photos help with move-out and deep cleans?",
+      answer:
+        "They settle deposit disputes. Documented condition on arrival and on completion gives the property manager or landlord something concrete to look at, rather than relying on recollection weeks later when the deposit is being argued over.",
+    },
+    {
+      question: "A client says an area was missed. How do photos help?",
+      answer:
+        "Comparable photos of that specific area, timestamped, answer it immediately. It turns a difficult conversation into a factual one, and in most cases the customer resolves it themselves once they can see the state you left it in.",
+    },
+    {
+      question: "Is this practical for a cleaner working alone?",
+      answer:
+        "Yes, that is the case it was built for. Two taps per room you want documented, no project setup, and a branded report ready to send before you have loaded the van. The free plan is permanent rather than a trial.",
+    },
+  ],
+  "painting": [
+    {
+      question: "What painting photos should I take before starting?",
+      answer:
+        "The existing colour and condition from the same positions you intend to shoot at the end, plus close-ups of any damage, patching, or prep you will be charging for. Prep is the part customers forget was necessary \u2014 photograph it before it disappears under primer.",
+    },
+    {
+      question: "How do I make a colour change read clearly in a photo?",
+      answer:
+        "Keep the light consistent. Colour is the one thing that shifts most between a grey morning and a bright afternoon, so shoot both frames under similar conditions and avoid mixing daylight with interior lamps. Include a fixed element such as trim or a doorway in both frames.",
+    },
+    {
+      question: "Why do painters lose credit for their work?",
+      answer:
+        "Because once the new colour is up, nobody remembers the old one. Within a week the customer has stopped seeing the change entirely. A before and after is the only thing that keeps the scale of the improvement in view when it comes to referrals and reviews.",
+    },
+    {
+      question: "Can I document interior and exterior jobs the same way?",
+      answer:
+        "Yes, the workflow does not change. The practical difference is that exteriors reward returning at the same time of day, since the sun moves a lot more than a ceiling light does.",
+    },
+  ],
+  "hvac": [
+    {
+      question: "What should an HVAC technician photograph on a service call?",
+      answer:
+        "The equipment as found, including the model plate, any corrosion, blockage, or failed component, and the same views after the repair or replacement. HVAC work is largely hidden and technical, so photos are what translate it into something the customer can evaluate.",
+    },
+    {
+      question: "How do photos help explain an HVAC repair the customer cannot see?",
+      answer:
+        "A blocked coil, a rusted condenser, or a filter that has not been changed in a year explains the invoice better than any line item. Showing the state you found the equipment in makes the recommendation feel like a diagnosis rather than an upsell.",
+    },
+    {
+      question: "Should I photograph the equipment before quoting a replacement?",
+      answer:
+        "Yes. Condition documented before the conversation protects the quote later, and gives you something to reference if the customer delays and the unit degrades further before they approve the work.",
+    },
+    {
+      question: "Does this work for a technician documenting several calls a day?",
+      answer:
+        "It is built for it \u2014 each call is two photos and no setup. If you document every stop, Pro removes the free plan's 5-project monthly cap and raises stored projects to 100.",
+    },
+  ],
+  "pool-service": [
+    {
+      question: "What pool service photos are worth taking?",
+      answer:
+        "The water condition on arrival, any staining, scale, or equipment issue you find, and the same shots once treated. Green-to-clear is the most persuasive image in the trade, and it is also the one customers most often fail to appreciate because they never saw the worst of it.",
+    },
+    {
+      question: "How do I photograph a pool that takes days to clear?",
+      answer:
+        "Shoot from the same corner each visit rather than only at the start and end. A sequence across several visits shows the work involved, which matters when the customer only sees the final result and wonders what they paid for.",
+    },
+    {
+      question: "Do pool before and afters perform well on social media?",
+      answer:
+        "Green-to-clear transformations are among the most watchable content in home services, because the change is total and immediate. Consistent framing is what makes them work \u2014 the same corner, the same distance, every time.",
+    },
+    {
+      question: "Can I include water chemistry notes with the photos?",
+      answer:
+        "Yes. Captions and report descriptions can carry whatever detail you want alongside the images, so the customer receives the readings and the visual evidence in the same branded document.",
+    },
+  ],
+  "home-remodeling": [
+    {
+      question: "What should I photograph during a remodel?",
+      answer:
+        "The original space from several fixed positions, everything behind the walls once they are open, and the finished result from those same original positions. The in-progress photos are what justify the price on a job where the customer only ever sees the start and the end.",
+    },
+    {
+      question: "How do I document a remodel that runs for weeks?",
+      answer:
+        "Return to the same vantage points at each stage rather than photographing whatever is interesting that day. Consistency is what makes a sequence readable later, and it gives you a record of hidden conditions if a dispute or change order comes up.",
+    },
+    {
+      question: "Why do remodel before and afters matter for winning bids?",
+      answer:
+        "Because prospective customers are trying to picture their own space transformed. A documented job that resembles theirs answers that better than a price or a description ever will, which is why remodel comparisons are among the most shared content in the trade.",
+    },
+    {
+      question: "Can I produce a report for the homeowner at the end?",
+      answer:
+        "Yes. A branded PDF combining the before and after images with your company details can be generated per job, which also serves as a record for warranty or resale conversations later.",
+    },
+  ],
+  "handyman": [
+    {
+      question: "What should a handyman photograph on small jobs?",
+      answer:
+        "Whatever you were called out to fix, before you touch it, and the same view once it is done. Small jobs are the easiest to under-document and the easiest to have questioned later, precisely because the work is quick and the customer often was not watching.",
+    },
+    {
+      question: "Is it worth documenting a job that takes twenty minutes?",
+      answer:
+        "Usually yes, because a twenty-minute job is where disputes are cheapest to prevent and hardest to prove. Two photos take a fraction of the visit and give you a record proportionate to the work.",
+    },
+    {
+      question: "How do I keep photos organised across many small jobs?",
+      answer:
+        "Photograph per job rather than into one camera roll. The problem with a rolling library is not capacity, it is that finding the right before photo three weeks later is effectively impossible once you have a few hundred similar shots.",
+    },
+    {
+      question: "What does the free plan cover for a handyman?",
+      answer:
+        "Five documented jobs a month, ten stored at a time, one user, and every core feature including AI captions, all templates, and PDF reports. It is permanent, not a trial. Pro at $29.99 a month removes the limits.",
+    },
+  ],
+  "owner-operator": [
+    {
+      question: "Is photo documentation worth the time when I am running the job alone?",
+      answer:
+        "Two photos per job is the whole commitment. The comparison is whether that is worth fewer payment disputes, better reviews, and a stream of content you did not have to create separately \u2014 which for most solo operators it comfortably is.",
+    },
+    {
+      question: "Why is contractor photo software so expensive for one person?",
+      answer:
+        "Most of it is priced per seat for companies coordinating crews, so a solo operator ends up paying for scheduling and team features they will never open. ProofShot Pro is $29.99 a month flat for Pro, and the free tier is permanent rather than a trial.",
+    },
+    {
+      question: "What does a one-person operation actually need from documentation?",
+      answer:
+        "Proof of what you did, something professional to send the customer, and content for social \u2014 without project setup, assignments, or a dashboard to maintain. Anything beyond that is overhead you will stop using within a month.",
+    },
+    {
+      question: "Can I upgrade later if I take on help?",
+      answer:
+        "Yes. Pro includes three team members, and additional seats are $9.99 per user per month, so the cost tracks the size of the crew rather than assuming one up front.",
+    },
+  ],
+};
+
+export function getIndustryFaqs(slug: string): IndustryFaq[] {
+  return industryFaqs[slug] ?? [];
+}

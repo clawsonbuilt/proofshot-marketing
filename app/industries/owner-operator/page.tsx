@@ -3,6 +3,8 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui";
 import { ValueProps } from "@/components/sections";
+import { IndustryFAQ } from "@/components/sections/IndustryFAQ";
+import { getIndustryFaqs } from "@/lib/industries";
 import {
   DollarSign,
   TrendingUp,
@@ -125,6 +127,35 @@ export default function OwnerOperatorPage() {
     <>
       <Navigation />
       <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "https://proofshotpro.com",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Industries",
+                  item: "https://proofshotpro.com/industries",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: "Owner Operators",
+                  item: "https://proofshotpro.com/industries/owner-operator",
+                },
+              ],
+            }),
+          }}
+        />
         {/* Hero Section */}
         <section className="relative pt-32 lg:pt-40 pb-16 lg:pb-24">
           {/* Background gradient - extends behind nav */}
@@ -401,6 +432,10 @@ export default function OwnerOperatorPage() {
             </div>
           </div>
         </section>
+        <IndustryFAQ
+          faqs={getIndustryFaqs("owner-operator")}
+          industryName="Owner Operator"
+        />
       </main>
       <Footer />
     </>

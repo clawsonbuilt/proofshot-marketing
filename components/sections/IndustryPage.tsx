@@ -3,7 +3,12 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui";
 import { BeforeAfterCard } from "./BeforeAfterCard";
-import { Industry, getRelatedIndustries } from "@/lib/industries";
+import { IndustryFAQ } from "./IndustryFAQ";
+import {
+  Industry,
+  getRelatedIndustries,
+  getIndustryFaqs,
+} from "@/lib/industries";
 import {
   AlertTriangle,
   Check,
@@ -23,6 +28,7 @@ export function IndustryPageTemplate({ industry }: IndustryPageProps) {
   const relatedIndustries = getRelatedIndustries(industry.slug);
   // Painting, pool service, and owner-operator have no complete pair yet.
   const heroPair = industry.gallery?.[0];
+  const faqs = getIndustryFaqs(industry.slug);
 
   return (
     <>
@@ -268,6 +274,8 @@ export function IndustryPageTemplate({ industry }: IndustryPageProps) {
             </div>
           </div>
         </section>
+
+        <IndustryFAQ faqs={faqs} industryName={industry.name} />
 
         {/* CTA Section */}
         <section className="py-16 lg:py-20 bg-gradient-to-b from-white via-orange-light/30 to-orange-light/50">
