@@ -1,5 +1,37 @@
 @import "tailwindcss";
 
+/* Poppins — the Modern template's typeface. Same self-hosted files the app uses, so
+   the template reproduced on this site matches the real output. Self-hosted rather
+   than from a CDN because the CSP allows font-src 'self' only. */
+@font-face {
+  font-family: "Poppins";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/Poppins-Light.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/Poppins-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/Poppins-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/Poppins-Black.woff2") format("woff2");
+}
+
 /* ==================== DESIGN TOKENS ==================== */
 :root {
   /* Primary Colors */

@@ -121,7 +121,9 @@ export function Hero() {
                     before="/industries/roofing/before-1.jpg"
                     after="/industries/roofing/after-1.jpg"
                     alt="a roof washing job"
-                    service="Roof washing · Spring, TX"
+                    companyName="ProofShot Pro"
+                    serviceTitle="Roof washing · Spring, TX"
+                    websiteUrl="proofshotpro.com"
                     priority
                   />
                   <figcaption className="flex items-baseline justify-between gap-3 px-1 pt-3 pb-1 font-mono text-[10px] uppercase tracking-[0.16em] text-gray-500">
