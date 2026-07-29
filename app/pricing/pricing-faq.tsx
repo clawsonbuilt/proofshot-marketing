@@ -67,7 +67,7 @@ export function PricingFAQ() {
             <div key={index}>
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full py-5 flex items-center justify-between text-left focus:outline-none group"
+                className="w-full py-5 flex items-center justify-between text-left group"
                 aria-expanded={openIndex === index}
                 aria-controls={`pricing-faq-answer-${index}`}
                 id={`pricing-faq-question-${index}`}

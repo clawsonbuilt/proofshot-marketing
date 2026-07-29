@@ -74,7 +74,7 @@ export function FAQ() {
                 onClick={() =>
                   setOpenIndex(openIndex === index ? null : index)
                 }
-                className="w-full py-5 flex items-center justify-between text-left focus:outline-none group"
+                className="w-full py-5 flex items-center justify-between text-left group"
                 aria-expanded={openIndex === index}
                 aria-controls={`faq-answer-${index}`}
                 id={`faq-question-${index}`}

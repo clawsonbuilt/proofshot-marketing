@@ -138,7 +138,12 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">
-          <p>&copy; {new Date().getFullYear()} ProofShot Pro. All rights reserved.</p>
+          {/*
+            No year. This footer is prerendered, so getFullYear() froze at build time
+            and would have gone stale the moment the site went a year without a deploy.
+            Computing it client-side would mean shipping JS for a decoration.
+          */}
+          <p>&copy; ProofShot Pro. All rights reserved.</p>
           <p className="text-gray-400">Made for contractors, by contractors.</p>
         </div>
       </div>

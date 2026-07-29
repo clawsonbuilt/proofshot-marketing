@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV === 'development';
+
 const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -30,11 +32,20 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com https://us-assets.i.posthog.com",
+              // 'unsafe-eval' is only needed by the dev server's hot reload. Shipping it
+              // to production widened script execution for no benefit.
+              `script-src 'self' 'unsafe-inline'${
+                isDev ? " 'unsafe-eval'" : ''
+              } https://static.cloudflareinsights.com https://us-assets.i.posthog.com`,
               "style-src 'self' 'unsafe-inline'",
               "font-src 'self'",
               "img-src 'self' data: blob:",
               "connect-src 'self' https://us.i.posthog.com https://us-assets.i.posthog.com",
+              // Nothing here embeds, posts, or loads plugins anywhere else.
+              "frame-ancestors 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+              "object-src 'none'",
             ].join('; '),
           },
         ],

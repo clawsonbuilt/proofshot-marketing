@@ -35,46 +35,57 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isIndustriesOpen, setIsIndustriesOpen] = useState(false);
   const [isMobileIndustriesOpen, setIsMobileIndustriesOpen] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isHidden, setIsHidden] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const industriesButtonRef = useRef<HTMLButtonElement>(null);
+  // A ref, not state. As state it belonged in the effect's dependency array, which
+  // tore down and re-attached the scroll listener on every single scroll frame.
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      const y = window.scrollY;
 
       // Background change after 50px
-      setIsScrolled(currentScrollY > 50);
+      setIsScrolled(y > 50);
 
-      // Hide/show on mobile based on scroll direction
-      if (window.innerWidth < 768) {
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          setIsHidden(true);
-        } else {
-          setIsHidden(false);
-        }
-      } else {
-        setIsHidden(false);
-      }
+      // Hide on mobile when scrolling down past 100px
+      setIsHidden(
+        window.innerWidth < 768 ? y > lastScrollY.current && y > 100 : false
+      );
 
-      setLastScrollY(currentScrollY);
+      lastScrollY.current = y;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
-  // Close dropdown when clicking outside
+  // Close dropdown on outside click or Escape
   useEffect(() => {
+    if (!isIndustriesOpen) return;
+
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsIndustriesOpen(false);
       }
     };
 
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsIndustriesOpen(false);
+        // Return focus to the trigger, or the user is stranded mid-page.
+        industriesButtonRef.current?.focus();
+      }
+    };
+
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isIndustriesOpen]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -142,7 +153,11 @@ export function Navigation() {
               {/* Industries Dropdown */}
               <div className="relative" ref={dropdownRef}>
                 <button
+                  ref={industriesButtonRef}
                   onClick={() => setIsIndustriesOpen(!isIndustriesOpen)}
+                  aria-expanded={isIndustriesOpen}
+                  aria-haspopup="true"
+                  aria-controls="industries-menu"
                   className={`flex items-center gap-1 font-medium transition-colors ${
                     pathname.startsWith("/industries")
                       ? "text-orange"
@@ -159,7 +174,10 @@ export function Navigation() {
 
                 {/* Dropdown Menu */}
                 {isIndustriesOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
+                  <div
+                    id="industries-menu"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50"
+                  >
                     {industries.map((industry, index) => (
                       <Link
                         key={industry.href}
@@ -212,12 +230,21 @@ export function Navigation() {
       </nav>
 
       {/* Mobile Menu Overlay */}
+      {/*
+        The panel stays mounted so it can slide. Left as-is its links remained in the
+        tab order while off-screen, so keyboard users tabbed into an invisible menu.
+        `inert` handles that on current browsers; `invisible` covers the older ones in
+        our browserslist range, and because visibility transitions discretely at the
+        end of the duration it does not cut the slide-out short.
+      */}
       <div
         id="mobile-menu"
-        className={`fixed inset-0 z-[60] bg-white transition-transform duration-300 md:hidden ${
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        inert={!isMobileMenuOpen}
+        className={`fixed inset-0 z-[60] bg-white transition-all duration-300 md:hidden ${
+          isMobileMenuOpen
+            ? "translate-x-0 visible"
+            : "translate-x-full invisible"
         }`}
-        aria-hidden={!isMobileMenuOpen}
       >
         <div className="flex flex-col h-full">
           {/* Mobile Menu Header */}
