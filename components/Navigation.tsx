@@ -86,11 +86,15 @@ export function Navigation() {
     };
   }, [isMobileMenuOpen]);
 
-  // Close mobile menu on route change
-  useEffect(() => {
+  // Close menus on route change. Adjusted during render rather than in an effect —
+  // an effect here fires a second render pass after the new route has already
+  // painted with the menu still open (react-hooks/set-state-in-effect).
+  const [lastPathname, setLastPathname] = useState(pathname);
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname);
     setIsMobileMenuOpen(false);
     setIsMobileIndustriesOpen(false);
-  }, [pathname]);
+  }
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -109,7 +113,7 @@ export function Navigation() {
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
               <Image
-                src="/logos/proofshot pro logo orange - Horizontal.svg"
+                src="/logos/logo-orange-horizontal.svg"
                 alt="ProofShot Pro"
                 width={200}
                 height={40}
@@ -222,7 +226,7 @@ export function Navigation() {
               className="flex-shrink-0"
             >
               <Image
-                src="/logos/proofshot pro logo orange - Horizontal.svg"
+                src="/logos/logo-orange-horizontal.svg"
                 alt="ProofShot Pro"
                 width={175}
                 height={35}
@@ -322,7 +326,7 @@ export function Navigation() {
               className="w-full"
               showArrow
             >
-              Get Started Free
+              Claim My Free Account
             </Button>
           </div>
         </div>

@@ -35,7 +35,7 @@ export function Footer() {
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
             <Link href="/" className="block mb-6">
               <Image
-                src="/logos/proofshot pro logo orange light - Horizontal.svg"
+                src="/logos/logo-orange-light-horizontal.svg"
                 alt="ProofShot Pro"
                 width={92}
                 height={18}
@@ -50,7 +50,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-orange hover:text-white font-medium text-sm transition-colors"
             >
-              Get Started Free →
+              Claim My Free Account →
             </Link>
           </div>
 
