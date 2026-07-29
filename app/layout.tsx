@@ -3,6 +3,7 @@ import { Inter, Inter_Tight } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import { PostHogPageView } from "@/components/PostHogPageView";
+import { CONTACT_EMAIL } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -127,7 +128,7 @@ export default function RootLayout({
               logo: "https://proofshotpro.com/logos/logo-orange-horizontal.svg",
               description:
                 "Before & after photo documentation app for contractors",
-              email: "hello@proofshotpro.com",
+              email: CONTACT_EMAIL,
               founder: [
                 { "@type": "Person", name: "Trey" },
                 { "@type": "Person", name: "Daniel" },

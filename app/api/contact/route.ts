@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { CONTACT_EMAIL, MAIL_FROM } from "@/lib/site";
 
 /**
  * Contact form handler.
@@ -11,9 +12,8 @@ import { NextResponse } from "next/server";
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 
-// Must be on the Resend-verified proofshotpro.com sending domain.
-const FROM = "ProofShot Pro <noreply@proofshotpro.com>";
-const TO = "hello@proofshotpro.com";
+const FROM = MAIL_FROM;
+const TO = CONTACT_EMAIL;
 
 const SUBJECT_LABELS: Record<string, string> = {
   general: "General Inquiry",
@@ -87,7 +87,7 @@ export async function POST(request: Request) {
     // Fail loudly. Silently accepting mail we cannot send is the bug this replaces.
     console.error("[contact] RESEND_API_KEY is not set — cannot send message.");
     return NextResponse.json(
-      { error: "Contact form is not configured. Please email hello@proofshotpro.com." },
+      { error: `Contact form is not configured. Please email ${CONTACT_EMAIL}.` },
       { status: 500 }
     );
   }
@@ -125,7 +125,7 @@ export async function POST(request: Request) {
       const detail = await response.text();
       console.error(`[contact] Resend responded ${response.status}: ${detail}`);
       return NextResponse.json(
-        { error: "We couldn't send your message. Please email hello@proofshotpro.com." },
+        { error: `We couldn't send your message. Please email ${CONTACT_EMAIL}.` },
         { status: 502 }
       );
     }
@@ -134,7 +134,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("[contact] Request to Resend failed:", error);
     return NextResponse.json(
-      { error: "We couldn't send your message. Please email hello@proofshotpro.com." },
+      { error: `We couldn't send your message. Please email ${CONTACT_EMAIL}.` },
       { status: 502 }
     );
   }

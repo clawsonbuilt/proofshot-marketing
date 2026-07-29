@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui";
+import { CONTACT_EMAIL } from "@/lib/site";
 import { Send, CheckCircle } from "lucide-react";
 
 export default function ContactPage() {
@@ -206,10 +207,10 @@ export default function ContactPage() {
               <p className="text-gray-600">
                 Or email us directly at{" "}
                 <a
-                  href="mailto:hello@proofshotpro.com"
+                  href={`mailto:${CONTACT_EMAIL}`}
                   className="text-orange hover:text-orange-hover font-medium"
                 >
-                  hello@proofshotpro.com
+                  {CONTACT_EMAIL}
                 </a>
               </p>
             </div>
