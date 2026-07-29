@@ -19,7 +19,7 @@ export function SocialProofBar() {
     <section className="bg-gray-50 py-8 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
         <p className="text-center text-gray-500 text-sm font-medium mb-6">
-          Trusted by contractors in every trade
+          Built for every trade
         </p>
 
         {/* Desktop: Featured on own row, others in rows of 7 max */}

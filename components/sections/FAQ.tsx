@@ -17,7 +17,7 @@ const faqs = [
   {
     question: "What's included in the free plan?",
     answer:
-      "5 projects per month, 10 stored projects max, and all core features including all templates. The only limitation is ProofShot branding appears on your outputs.",
+      "5 projects per month, 10 stored projects at a time, and 1 user — plus all core features, including AI-powered captions, every template, and PDF reports. Your outputs carry ProofShot branding, which Pro removes.",
   },
   {
     question: "Can I cancel anytime?",
@@ -32,7 +32,7 @@ const faqs = [
   {
     question: "Do you offer team accounts?",
     answer:
-      "Yes! Pro plans include 3 team members. Add more for $9.99/user/month. Lifetime includes 30 users.",
+      "Yes. Pro plans include 3 team members. Add more for $9.99 per user per month.",
   },
 ];
 
