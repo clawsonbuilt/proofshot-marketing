@@ -32,7 +32,7 @@ export default function PrivacyPage() {
               Privacy Policy
             </h1>
             <p className="text-gray-600">
-              Last updated: February 2026
+              Last updated: August 2026
             </p>
           </div>
         </section>
@@ -88,7 +88,7 @@ export default function PrivacyPage() {
                   <strong>Log Data:</strong> IP address, access times, and referring URLs.
                 </li>
                 <li>
-                  <strong>Location Data:</strong> General location based on IP address (not precise GPS location unless you enable it for photo geotagging).
+                  <strong>Location Data:</strong> General location based on IP address. We do not collect precise GPS location.
                 </li>
               </ul>
 
@@ -143,19 +143,31 @@ export default function PrivacyPage() {
                   </a>.
                 </li>
                 <li>
-                  <strong>Vercel:</strong> For hosting and infrastructure. See{" "}
+                  <strong>Supabase:</strong> For our database, user authentication, and photo storage. Your account data, projects, and photos are stored with Supabase. See{" "}
+                  <a href="https://supabase.com/privacy" className="text-orange hover:text-orange-hover" target="_blank" rel="noopener noreferrer">
+                    Supabase&apos;s Privacy Policy
+                  </a>.
+                </li>
+                <li>
+                  <strong>Vercel:</strong> For hosting, infrastructure, and anonymized performance monitoring. See{" "}
                   <a href="https://vercel.com/legal/privacy-policy" className="text-orange hover:text-orange-hover" target="_blank" rel="noopener noreferrer">
                     Vercel&apos;s Privacy Policy
                   </a>.
                 </li>
                 <li>
-                  <strong>PostHog:</strong> For product analytics (cookieless, no personal data stored). See{" "}
+                  <strong>PostHog:</strong> For product analytics. Analytics events are associated with your account ID and email address so we can understand how features are used; PostHog does not receive your photos or your customers&apos; information. See{" "}
                   <a href="https://posthog.com/privacy" className="text-orange hover:text-orange-hover" target="_blank" rel="noopener noreferrer">
                     PostHog&apos;s Privacy Policy
                   </a>.
                 </li>
                 <li>
-                  <strong>Anthropic (Claude):</strong> For AI-powered caption generation. Photo descriptions are processed via the Claude API but not stored or used for model training. See{" "}
+                  <strong>Resend:</strong> For sending transactional and notification emails, including project emails you send to your customers. See{" "}
+                  <a href="https://resend.com/legal/privacy-policy" className="text-orange hover:text-orange-hover" target="_blank" rel="noopener noreferrer">
+                    Resend&apos;s Privacy Policy
+                  </a>.
+                </li>
+                <li>
+                  <strong>Anthropic (Claude):</strong> For AI-powered caption generation. Project details are sent as text only to generate captions — your photos are never sent to the AI — and this data is not used for model training. See{" "}
                   <a href="https://www.anthropic.com/privacy" className="text-orange hover:text-orange-hover" target="_blank" rel="noopener noreferrer">
                     Anthropic&apos;s Privacy Policy
                   </a>.
@@ -174,7 +186,7 @@ export default function PrivacyPage() {
                   <strong>Account Data:</strong> Retained until you delete your account.
                 </li>
                 <li>
-                  <strong>Photos and Projects:</strong> Retained according to your plan limits. Deleted projects move to a &quot;Recently Deleted&quot; folder for 30 days where they can be restored. After 30 days they are removed from your account but retained in our database for an additional 60 days for recovery purposes, then permanently deleted.
+                  <strong>Photos and Projects:</strong> Retained according to your plan limits. Deleted projects move to a &quot;Recently Deleted&quot; folder for 30 days, where they can be restored or permanently deleted immediately with &quot;Delete Forever.&quot; After 30 days they are automatically removed from your account. Deleting your account permanently removes all of your photos and projects from our systems within 30 days.
                 </li>
                 <li>
                   <strong>Payment Records:</strong> Retained for 7 years for legal and tax compliance.
@@ -214,7 +226,7 @@ export default function PrivacyPage() {
                   <strong>Correction:</strong> Request correction of inaccurate or incomplete information.
                 </li>
                 <li>
-                  <strong>Deletion:</strong> Request deletion of your personal information (subject to legal requirements).
+                  <strong>Deletion:</strong> Delete your account and all associated data directly in the app (Settings → Profile → Delete Account), or request deletion by contacting us (subject to legal requirements).
                 </li>
                 <li>
                   <strong>Export:</strong> Request your data in a portable format.
